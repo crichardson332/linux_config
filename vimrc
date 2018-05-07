@@ -1,0 +1,80 @@
+let g:solarized_termtrans=1
+filetype on
+filetype plugin indent on
+syntax enable
+" pathogen
+execute pathogen#infect()
+:set tabstop=2
+:set shiftwidth=2
+:set expandtab
+:set hls!
+:set ruler
+:set number
+" Set xml syntax highlighting for ros 
+autocmd bufread *.launch exe "setf xml"
+":set nohlsearch
+
+" Functions to see a diff from the last save inside of vim
+:command Diff w !diff % - 
+:command Tkdiff w !tkdiff % /dev/stdin
+:command Fold setlocal foldmethod=syntax
+:command Sign %s/@author.*/@author Christopher Richardson <christopher.richardson@gtri.gatech.edu>
+set background=dark
+colorscheme solarized
+
+"This unsets the 'last search pattern' register by hitting return
+nnoremap <CR> :noh<CR><CR>
+
+"autocmd vimenter * Fold
+"autocmd vimenter * NERDTree | wincmd p
+autocmd vimenter * NERDTree
+" close vim if NERDTree is the only buffer left
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" ctrlp
+"set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+"---- REMAPS ----"
+" NERDTree
+noremap <C-n> :NERDTreeToggle<CR>
+" movement remaps
+noremap <C-e> <esc>$
+noremap <C-a> <esc>0
+inoremap <C-e> <esc><S-a>
+inoremap <C-a> <esc><S-i>
+" remap ctrl-c to esc to get abbreviation finishing functionality
+inoremap <C-c> <esc>
+" tab remaps
+" FIXME these have issues that need to be fixed
+"nnoremap <C-w> :tabprevious<CR>
+"nnoremap <C-o> :tabnext<CR>
+"nnoremap <C-/> :tabnew<CR>
+inoremap <C-w> <C-O>:tabprevious<CR>
+inoremap <C-o> <C-O>:tabnext<CR>
+"inoremap <C-/> <C-O>:tabnew<CR>
+" window remaps
+nnoremap <C-g> <C-O>:vsplit<CR>
+nnoremap <C-b> <C-O>:split<CR>
+nnoremap <C-k> <C-W>k<CR>
+nnoremap <C-j> <C-W>j<CR>
+nnoremap <C-h> <C-W>h<CR>k
+nnoremap <C-l> <C-W>l<CR>k
+inoremap <C-j> <C-c><C-W>k
+inoremap <C-k> <C-c><C-W>j
+inoremap <C-h> <C-c><C-W>h
+inoremap <C-l> <C-c><C-W>l
+"---- END REMAPS ----"
+
+"" syntastic settings
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 0
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_check_on_w = 0
+"let g:syntastic_toggle_mode = {"mode": "passive", "active_filetypes": []}
+""let g:syntastic_quiet_messages = {"type": "syntax"}
+"let g:syntastic_cpp_cpplint_exec = "cpplint"
