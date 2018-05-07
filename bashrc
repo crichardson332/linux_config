@@ -49,7 +49,7 @@ if ! shopt -oq posix; then
 fi
 
 # dircolors for solarized
-eval `dircolors ~/dircolors_solarized/dircolors.ansi-dark`
+eval `dircolors ~/.dircolors/dircolors_solarized/dircolors.ansi-dark`
 
 # prompt
 #export PS1="\n\[\e[31m\][\[\e[m\]\t\[\e[31m\]]\[\e[m\] \w/\n\[\e[36m\]\u\[\e[m\]@\[\e[33m\]\h\[\e[m\]\\$ "

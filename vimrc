@@ -27,7 +27,7 @@ nnoremap <CR> :noh<CR><CR>
 
 "autocmd vimenter * Fold
 "autocmd vimenter * NERDTree | wincmd p
-autocmd vimenter * NERDTree
+"autocmd vimenter * NERDTree
 " close vim if NERDTree is the only buffer left
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 

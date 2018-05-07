@@ -1,7 +1,10 @@
 #!/bin/bash
 
+# add apt repo for vim 8.0
+sudo add-apt-repository ppa:jonathonf/vim
+
 sudo apt-get update
-sudo apt-get install build-essential libgtest-dev curl terminator git python vim safe-rm openssh-server tmux
+sudo apt-get install build-essential libgtest-dev curl terminator git python vim safe-rm openssh-server tmux vim
 
 if [ ! -d $HOME"/.config/terminator" ]; then
   mkdir -p $HOME/.config/terminator
@@ -47,8 +50,8 @@ vim -u NONE -c "helptags vim-surround/doc" -c q
 fi
 
 # dircolors
-if [ ! -d $HOME"/dircolors_solarized" ]; then
-git clone https://github.com/seebi/dircolors-solarized.git $HOME/dircolors_solarized
+if [ ! -d $HOME"/.dircolors/dircolors_solarized" ]; then
+git clone https://github.com/seebi/dircolors-solarized.git $HOME/.dircolors/dircolors_solarized
 fi
 
 # create config files
