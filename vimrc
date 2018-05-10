@@ -19,6 +19,7 @@ autocmd bufread *.launch exe "setf xml"
 :command Tkdiff w !tkdiff % /dev/stdin
 :command Fold setlocal foldmethod=syntax
 :command Sign %s/@author.*/@author Christopher Richardson <christopher.richardson@gtri.gatech.edu>
+:command Term term ++curwin
 set background=dark
 colorscheme solarized
 
@@ -34,10 +35,25 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " ctrlp
 "set runtimepath^=~/.vim/bundle/ctrlp.vim
 
-"---- REMAPS ----"
-" NERDTree
+" term functions
+function InsertOnTerm()
+  if index(term_list(),bufnr('%')) != -1
+    normal i
+    normal :
+  endif 
+endfunction
+
+function ForceQuitIfTerm()
+  if index(term_list(),bufnr('%')) != -1
+    quit!
+  else
+    quit
+  endif 
+endfunction
+
+" remaps
 noremap <C-n> :NERDTreeToggle<CR>
-" movement remaps
+" movement
 noremap <C-e> <esc>$
 noremap <C-a> <esc>0
 inoremap <C-e> <esc><S-a>
@@ -45,9 +61,15 @@ inoremap <C-a> <esc><S-i>
 " remap ctrl-c to esc to get abbreviation finishing functionality
 inoremap <C-c> <esc>
 " tab remaps
-nnoremap <C-i> :tabprevious<CR>
-nnoremap <C-o> :tabnext<CR>
+nnoremap <C-i> <C-\><C-n>gT:call InsertOnTerm()<CR>
+nnoremap <C-o> <C-\><C-n>gt:call InsertOnTerm()<CR>
+tnoremap <C-i> <C-\><C-n>gT<CR>
+tnoremap <C-o> <C-\><C-n>gt<CR>
 nnoremap <C-t> :tabnew<CR>
+tnoremap <C-t> <C-\><C-n>:tabnew<CR>
+" quit remap
+tnoremap <c-f> <c-w><c-c>
+"nnoremap :q :call ForceQuitIfTerm()
 " window remaps
 nnoremap <C-g> :vsplit<CR>
 nnoremap <C-b> :split<CR>
@@ -59,7 +81,6 @@ inoremap <C-j> <C-c><C-W>k
 inoremap <C-k> <C-c><C-W>j
 inoremap <C-h> <C-c><C-W>h
 inoremap <C-l> <C-c><C-W>l
-"---- END REMAPS ----"
 
 "" syntastic settings
 "set statusline+=%#warningmsg#
