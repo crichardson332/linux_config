@@ -45,15 +45,9 @@ inoremap <C-a> <esc><S-i>
 " remap ctrl-c to esc to get abbreviation finishing functionality
 inoremap <C-c> <esc>
 " tab remaps
-" FIXME these have issues that need to be fixed
-"nnoremap <C-w> :tabprevious<CR>
-"nnoremap <C-o> :tabnext<CR>
-"nnoremap <C-/> :tabnew<CR>
-nnoremap <C-w> :tabprevious<CR>
+nnoremap <C-i> :tabprevious<CR>
 nnoremap <C-o> :tabnext<CR>
-inoremap <C-w> <C-O>:tabprevious<CR>
-inoremap <C-o> <C-O>:tabnext<CR>
-"inoremap <C-/> <C-O>:tabnew<CR>
+nnoremap <C-t> :tabnew<CR>
 " window remaps
 nnoremap <C-g> :vsplit<CR>
 nnoremap <C-b> :split<CR>
