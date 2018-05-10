@@ -49,12 +49,14 @@ inoremap <C-c> <esc>
 "nnoremap <C-w> :tabprevious<CR>
 "nnoremap <C-o> :tabnext<CR>
 "nnoremap <C-/> :tabnew<CR>
+nnoremap <C-w> :tabprevious<CR>
+nnoremap <C-o> :tabnext<CR>
 inoremap <C-w> <C-O>:tabprevious<CR>
 inoremap <C-o> <C-O>:tabnext<CR>
 "inoremap <C-/> <C-O>:tabnew<CR>
 " window remaps
-nnoremap <C-g> <C-O>:vsplit<CR>
-nnoremap <C-b> <C-O>:split<CR>
+nnoremap <C-g> :vsplit<CR>
+nnoremap <C-b> :split<CR>
 nnoremap <C-k> <C-W>k<CR>
 nnoremap <C-j> <C-W>j<CR>
 nnoremap <C-h> <C-W>h<CR>k
