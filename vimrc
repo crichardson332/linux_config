@@ -19,7 +19,6 @@ autocmd bufread *.launch exe "setf xml"
 :command Tkdiff w !tkdiff % /dev/stdin
 :command Fold setlocal foldmethod=syntax
 :command Sign %s/@author.*/@author Christopher Richardson <christopher.richardson@gtri.gatech.edu>
-:command Term term ++curwin
 set background=dark
 colorscheme solarized
 
@@ -51,8 +50,16 @@ function ForceQuitIfTerm()
   endif 
 endfunction
 
+:command Term term ++curwin
+:command NTerm tabnew | Term
+
 " remaps
 noremap <C-n> :NERDTreeToggle<CR>
+
+" un-mapping NERDTree maps that conflict
+let g:NERDTreeMapJumpNextSibling="☻"
+let g:NERDTreeMapJumpPrevSibling="☺"
+
 " movement
 noremap <C-e> <esc>$
 noremap <C-a> <esc>0
@@ -61,10 +68,10 @@ inoremap <C-a> <esc><S-i>
 " remap ctrl-c to esc to get abbreviation finishing functionality
 inoremap <C-c> <esc>
 " tab remaps
-nnoremap <C-i> <C-\><C-n>gT:call InsertOnTerm()<CR>
-nnoremap <C-o> <C-\><C-n>gt:call InsertOnTerm()<CR>
-tnoremap <C-i> <C-\><C-n>gT<CR>
-tnoremap <C-o> <C-\><C-n>gt<CR>
+nnoremap <C-j> <C-\><C-n>gT:call InsertOnTerm()<CR>
+nnoremap <C-k> <C-\><C-n>gt:call InsertOnTerm()<CR>
+tnoremap <C-j> <C-\><C-n>gT<CR>
+tnoremap <C-k> <C-\><C-n>gt<CR>
 nnoremap <C-t> :tabnew<CR>
 tnoremap <C-t> <C-\><C-n>:tabnew<CR>
 " quit remap
@@ -73,8 +80,8 @@ tnoremap <c-f> <c-w><c-c>
 " window remaps
 nnoremap <C-g> :vsplit<CR>
 nnoremap <C-b> :split<CR>
-nnoremap <C-k> <C-W>k<CR>
-nnoremap <C-j> <C-W>j<CR>
+"nnoremap <C-k> <C-W>k<CR>
+"nnoremap <C-j> <C-W>j<CR>
 nnoremap <C-h> <C-W>h<CR>k
 nnoremap <C-l> <C-W>l<CR>k
 inoremap <C-j> <C-c><C-W>k
