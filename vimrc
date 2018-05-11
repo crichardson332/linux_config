@@ -70,8 +70,8 @@ inoremap <C-c> <esc>
 " tab remaps
 nnoremap <C-j> <C-\><C-n>gT:call InsertOnTerm()<CR>
 nnoremap <C-k> <C-\><C-n>gt:call InsertOnTerm()<CR>
-tnoremap <C-j> <C-\><C-n>gT<CR>
-tnoremap <C-k> <C-\><C-n>gt<CR>
+tnoremap <C-j> <C-\><C-n>gTk<CR>
+tnoremap <C-k> <C-\><C-n>gtk<CR>
 nnoremap <C-t> :tabnew<CR>
 tnoremap <C-t> <C-\><C-n>:tabnew<CR>
 " quit remap
