@@ -90,8 +90,8 @@ inoremap <c-k> <c-c><c-W>j
 inoremap <c-h> <c-c><c-W>h
 inoremap <c-l> <c-c><c-W>l
 " buffer cycling
-nnoremap <c-i> :bprev
-nnoremap <c-o> :bnext
+nnoremap <c-i> <CR>:bprev
+nnoremap <c-o> <CR>:bnext
 
 "" syntastic settings
 "set statusline+=%#warningmsg#
