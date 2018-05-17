@@ -53,6 +53,7 @@ endfunction
 
 :command Term term ++curwin
 :command NTerm tabnew | Term
+:command D bp|bd #
 
 " remaps
 noremap <c-n> :NERDTreeToggle<CR>
@@ -92,6 +93,12 @@ inoremap <c-l> <c-c><c-W>l
 " buffer cycling
 nnoremap <c-i> :bprev<CR>
 nnoremap <c-o> :bnext<CR>
+
+" bufferline settings
+let g:bufferline_echo = 0
+autocmd VimEnter *
+    \ let &statusline='%{bufferline#refresh_status()}' . bufferline#get_status_string()
+set laststatus=2
 
 "" syntastic settings
 "set statusline+=%#warningmsg#

@@ -48,6 +48,10 @@ if [ ! -d $HOME"/.vim/bundle/vim-surround" ]; then
 git clone https://github.com/tpope/vim-surround.git $HOME/.vim/bundle/vim-surround
 vim -u NONE -c "helptags vim-surround/doc" -c q
 fi
+if [ ! -d $HOME"/.vim/bundle/vim-bufferline" ]; then
+git clone https://github.com/bling/vim-bufferline $HOME/.vim/bundle/vim-bufferline
+vim -u NONE -c "helptags vim-bufferline/doc" -c q
+fi
 
 # dircolors
 if [ ! -d $HOME"/.dircolors/dircolors-solarized" ]; then
