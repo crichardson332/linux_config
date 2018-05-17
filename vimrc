@@ -20,6 +20,7 @@ autocmd bufread *.launch exe "setf xml"
 :command Fold setlocal foldmethod=syntax
 :command Sign %s/@author.*/@author Christopher Richardson <christopher.richardson@gtri.gatech.edu>
 set background=dark
+"set background=light
 colorscheme solarized
 
 "This unsets the 'last search pattern' register by hitting return
@@ -54,51 +55,58 @@ endfunction
 :command NTerm tabnew | Term
 
 " remaps
-noremap <C-n> :NERDTreeToggle<CR>
+noremap <c-n> :NERDTreeToggle<CR>
 
 " un-mapping NERDTree maps that conflict
 let g:NERDTreeMapJumpNextSibling="☻"
 let g:NERDTreeMapJumpPrevSibling="☺"
 
 " movement
-noremap <C-e> <esc>$
-noremap <C-a> <esc>0
-inoremap <C-e> <esc><S-a>
-inoremap <C-a> <esc><S-i>
+noremap <c-e> <esc>$
+noremap <c-a> <esc>0
+inoremap <c-e> <esc><S-a>
+inoremap <c-a> <esc><S-i>
 " remap ctrl-c to esc to get abbreviation finishing functionality
-inoremap <C-c> <esc>
+inoremap <c-c> <esc>
 " tab remaps
-nnoremap <C-j> <C-\><C-n>gT:call InsertOnTerm()<CR>
-nnoremap <C-k> <C-\><C-n>gt:call InsertOnTerm()<CR>
-tnoremap <C-j> <C-\><C-n>gTk<CR>
-tnoremap <C-k> <C-\><C-n>gtk<CR>
-nnoremap <C-t> :tabnew<CR>
-tnoremap <C-t> <C-\><C-n>:tabnew<CR>
+nnoremap <c-f> <c-p>
+"nnoremap <c-j> <c-\><c-n>gT:call InsertOnTerm()<CR>
+"nnoremap <c-k> <c-\><c-n>gt:call InsertOnTerm()<CR>
+"tnoremap <c-j> <c-\><c-n>gTk:call InsertOnTerm()<CR>
+"tnoremap <c-k> <c-\><c-n>gtk:call InsertOnTerm()<CR>
+nnoremap <c-t> :tabnew<CR>
+tnoremap <c-t> <c-\><c-n>:tabnew<CR>
 " quit remap
-tnoremap <c-f> <c-w><c-c>
-"nnoremap :q :call ForceQuitIfTerm()
+"tnoremap <c-q> <c-w><c-c>
 " window remaps
-nnoremap <C-g> :vsplit<CR>
-nnoremap <C-b> :split<CR>
-"nnoremap <C-k> <C-W>k<CR>
-"nnoremap <C-j> <C-W>j<CR>
-nnoremap <C-h> <C-W>h<CR>k
-nnoremap <C-l> <C-W>l<CR>k
-inoremap <C-j> <C-c><C-W>k
-inoremap <C-k> <C-c><C-W>j
-inoremap <C-h> <C-c><C-W>h
-inoremap <C-l> <C-c><C-W>l
+nnoremap <c-g> :vsplit<CR>
+nnoremap <c-b> :split<CR>
+nnoremap <c-k> <c-W>k<CR>
+nnoremap <c-j> <c-W>j<CR>
+nnoremap <c-h> <c-W>h<CR>k
+nnoremap <c-l> <c-W>l<CR>k
+inoremap <c-j> <c-c><c-W>k
+inoremap <c-k> <c-c><c-W>j
+inoremap <c-h> <c-c><c-W>h
+inoremap <c-l> <c-c><c-W>l
+" buffer cycling
+nnoremap <c-i> :bprev
+nnoremap <c-o> :bnext
 
 "" syntastic settings
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
-"
+""
 "let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 0
+"let g:syntastic_check_on_open = 1
 "let g:syntastic_check_on_wq = 0
-"let g:syntastic_check_on_w = 0
-"let g:syntastic_toggle_mode = {"mode": "passive", "active_filetypes": []}
-""let g:syntastic_quiet_messages = {"type": "syntax"}
+"let g:syntastic_check_on_w = 1
+"let g:syntastic_cpp_remove_include_errors = 0
+""let g:syntastic_toggle_mode = {"mode": "passive", "active_filetypes": []}
+"""let g:syntastic_quiet_messages = {"type": "syntax"}
 "let g:syntastic_cpp_cpplint_exec = "cpplint"
+"let g:syntastic_debug = 0
+"let g:syntastic_cpp_compiler = "g++"
+"let g:syntastic_cpp_compiler_options="-std=c++14 -stdlib=libc++"
