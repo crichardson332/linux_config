@@ -10,6 +10,7 @@ execute pathogen#infect()
 :set hls!
 :set ruler
 :set number
+:set nostartofline
 " Set xml syntax highlighting for ros 
 autocmd bufread *.launch exe "setf xml"
 ":set nohlsearch
@@ -99,6 +100,37 @@ let g:bufferline_echo = 0
 autocmd VimEnter *
     \ let &statusline='%{bufferline#refresh_status()}' . bufferline#get_status_string()
 set laststatus=2
+
+""""""""""""""""""""""""""""""""""""""""
+" fix issue with window scrolling during buffer switch
+""""""""""""""""""""""""""""""""""""""""
+" Save current view settings on a per-window, per-buffer basis.
+function! AutoSaveWinView()
+    if !exists("w:SavedBufView")
+        let w:SavedBufView = {}
+    endif
+    let w:SavedBufView[bufnr("%")] = winsaveview()
+endfunction
+
+" Restore current view settings.
+function! AutoRestoreWinView()
+    let buf = bufnr("%")
+    if exists("w:SavedBufView") && has_key(w:SavedBufView, buf)
+        let v = winsaveview()
+        let atStartOfFile = v.lnum == 1 && v.col == 0
+        if atStartOfFile && !&diff
+            call winrestview(w:SavedBufView[buf])
+        endif
+        unlet w:SavedBufView[buf]
+    endif
+endfunction
+
+" When switching buffers, preserve window view.
+if v:version >= 700
+    autocmd BufLeave * call AutoSaveWinView()
+    autocmd BufEnter * call AutoRestoreWinView()
+endif
+""""""""""""""""""""""""""""""""""""""""
 
 "" syntastic settings
 "set statusline+=%#warningmsg#

@@ -55,7 +55,7 @@ eval `dircolors ~/.dircolors/dircolors-solarized/dircolors.ansi-dark`
 #export PS1="\n\[\e[31m\][\[\e[m\]\t\[\e[31m\]]\[\e[m\] \w/\n\[\e[36m\]\u\[\e[m\]@\[\e[33m\]\h\[\e[m\]\\$ "
 
 # aliases
-alias rm='safe-rm'
+alias rm='trash'
 alias ls='ls --color=auto'
 alias ll='ls -lh'
 alias l='ls -lh'
