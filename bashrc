@@ -68,6 +68,11 @@ alias grep='grep --color=auto'
 alias cld='cdl'
 alias bdl='./build_scripts/lite_build'
 
+# git
+git config --global user.name "Christopher Richardson"
+git config --global user.email christopher.richardson@gtri.gatech.edu
+git config --global alias.nicelog 'log --decorate --oneline --graph'
+
 # Editor
 export VISUAL=vim
 export EDITOR="$VISUAL"
@@ -114,6 +119,46 @@ function cdu() {
     cd $(printf "%0.s../" $(seq 1 $1 ));
     ls -lh
   fi
+}
+
+function vimcpp() {
+  vim $(find -P . -not -path '*/\.*' -not -path '*/build*' -type f -regex '.*\.\(cpp\|hpp\|h\|cc\|c\)$')
+}
+
+function change_occurrences_of_name() {
+  HELP="Change all occurrences of OLDNAME to NEWNAME in all files at or below the current
+directory, recursively. Symbolic links are not followed.
+
+Usage:
+  change_occurrences_of_name OLDNAME NEWNAME
+  "
+  if [ -z "$1" ] ; then
+    echo "$HELP"
+  elif [ -z "$2" ] ; then
+    echo "$HELP"
+  else
+    find . -type f -not -path '*/\.*' -exec sed -i "s/$1/$2/g" {} \;
+  fi
+}
+
+# FIXME because I have to do this :/
+function bdx () {
+  last3dir=$(basename $(dirname $(dirname "$PWD")))/$(basename $(dirname "$PWD"))/$(basename "$PWD")
+  if [ "$last3dir" == "gtri-bees/srcx/build" ]; then
+    cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX=~/gtri-uav-install
+  else
+    echo "Must be in gtri-bees/srcx/build to run this command!"
+  fi
+}
+
+function add_dotlocal_to_ldpath() {
+  export LD_LIBRARY_PATH="/home/$USER/.local/lib:$LD_LIBRARY_PATH"
+  echo "LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
+}
+
+function add_gtri-uav-install_to_ldpath() {
+  export LD_LIBRARY_PATH="/home/$USER/gtri-uav-install/lib:$LD_LIBRARY_PATH"
+  echo "LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
 }
 
 # Set prompt

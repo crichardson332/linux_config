@@ -100,6 +100,9 @@ let g:bufferline_echo = 0
 autocmd VimEnter *
     \ let &statusline='%{bufferline#refresh_status()}' . bufferline#get_status_string()
 set laststatus=2
+let g:bufferline_rotate=2
+"let g:bufferline_fixed_index=0
+
 
 """"""""""""""""""""""""""""""""""""""""
 " fix issue with window scrolling during buffer switch
