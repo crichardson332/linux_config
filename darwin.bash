@@ -57,6 +57,5 @@ cp bash_profile $BASH_PROFILE
 cp bashrc_darwin $BASHRC
 cp bashprompt $BASHPROMPT
 cp vimrc $VIMRC
-cp terminator_config $TERMINATOR_CONFIG
 
 source $BASHRC

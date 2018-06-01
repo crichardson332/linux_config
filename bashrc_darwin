@@ -12,6 +12,9 @@ alias rlg='source ~/.bash_profile'
 alias gits='git status'
 alias grep='grep --color=auto'
 alias cld='cdl'
+# ssh aliases
+alias sshvm3='ssh -p 2223 chris@127.0.0.1'
+alias sshlnx='ssh crichardson@192.168.90.201'
 
 # dircolors for solarized
 eval `dircolors ~/.dircolors/dircolors-solarized/dircolors.ansi-dark`
