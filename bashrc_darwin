@@ -1,8 +1,8 @@
 # coreutils replacements
-alias grep='ggrep'
+alias grep='ggrep --color=auto'
 alias dircolors='gdircolors'
 # convent aliases
-alias rm='safe-rm'
+alias rm='trash'
 alias ls='gls --color=auto'
 alias ll='ls -lh'
 alias l='ls -lh'
@@ -10,11 +10,15 @@ alias lll='ls -lh'
 alias la='ls -lsah'
 alias rlg='source ~/.bash_profile'
 alias gits='git status'
-alias grep='grep --color=auto'
 alias cld='cdl'
 # ssh aliases
 alias sshvm3='ssh -p 2223 chris@127.0.0.1'
 alias sshlnx='ssh crichardson@192.168.90.201'
+
+# git
+git config --global user.name "Christopher Richardson"
+git config --global user.email christopher.richardson@gtri.gatech.edu
+git config --global alias.nicelog 'log --decorate --oneline --graph'
 
 # dircolors for solarized
 eval `dircolors ~/.dircolors/dircolors-solarized/dircolors.ansi-dark`

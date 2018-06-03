@@ -1,6 +1,6 @@
 #!/bin/bash
 
-brew install gtest curl git python vim safe-rm tmux grep
+brew install gtest curl git python vim safe-rm tmux grep coreutils trash-cli ninja tree
 
 if [ ! -d $HOME"/.vim" ]; then
   mkdir -p $HOME/.vim
@@ -14,7 +14,6 @@ BASH_PROFILE=$HOME"/.bash_profile"
 BASHRC=$HOME"/.bashrc"
 BASHPROMPT=$HOME"/.prompt.bash"
 VIMRC=$HOME"/.vimrc"
-TERMINATOR_CONFIG=$HOME"/.config/terminator/config"
 
 # vim pathogen
 mkdir -p $HOME/.vim/autoload ~/.vim/bundle
@@ -56,10 +55,9 @@ touch $BASH_PROFILE
 touch $BASHRC
 touch $BASHPROMPT
 touch $VIMRC
-touch $TERMINATOR_CONFIG
 cp bash_profile $BASH_PROFILE
 cp bashrc_darwin $BASHRC
 cp bashprompt $BASHPROMPT
 cp vimrc $VIMRC
 
-source $BASHRC
+source $BASH_PROFILE
