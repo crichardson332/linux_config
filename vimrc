@@ -1,4 +1,5 @@
 let g:solarized_termtrans=1
+let NERDTreeHijackNetrw=1
 filetype on
 filetype plugin indent on
 syntax enable
@@ -31,7 +32,7 @@ nnoremap <CR> :noh<CR><CR>
 "autocmd vimenter * NERDTree | wincmd p
 "autocmd vimenter * NERDTree
 " close vim if NERDTree is the only buffer left
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " ctrlp
 "set runtimepath^=~/.vim/bundle/ctrlp.vim
@@ -57,11 +58,11 @@ endfunction
 :command D bp|bd #
 
 " remaps
-noremap <c-n> :NERDTreeToggle<CR>
-
-" un-mapping NERDTree maps that conflict
-let g:NERDTreeMapJumpNextSibling="☻"
-let g:NERDTreeMapJumpPrevSibling="☺"
+"noremap <c-n> :NERDTreeToggle<CR>
+"
+"" un-mapping NERDTree maps that conflict
+"let g:NERDTreeMapJumpNextSibling="☻"
+"let g:NERDTreeMapJumpPrevSibling="☺"
 
 " movement
 noremap <c-e> <esc>$
@@ -71,15 +72,8 @@ inoremap <c-a> <esc><S-i>
 " remap ctrl-c to esc to get abbreviation finishing functionality
 inoremap <c-c> <esc>
 " tab remaps
-nnoremap <c-f> <c-p>
-"nnoremap <c-j> <c-\><c-n>gT:call InsertOnTerm()<CR>
-"nnoremap <c-k> <c-\><c-n>gt:call InsertOnTerm()<CR>
-"tnoremap <c-j> <c-\><c-n>gTk:call InsertOnTerm()<CR>
-"tnoremap <c-k> <c-\><c-n>gtk:call InsertOnTerm()<CR>
 nnoremap <c-t> :tabnew<CR>
 tnoremap <c-t> <c-\><c-n>:tabnew<CR>
-" quit remap
-"tnoremap <c-q> <c-w><c-c>
 " window remaps
 nnoremap <c-g> :vsplit<CR>
 nnoremap <c-b> :split<CR>
@@ -102,7 +96,6 @@ autocmd VimEnter *
 set laststatus=2
 let g:bufferline_rotate=2
 "let g:bufferline_fixed_index=0
-
 
 """"""""""""""""""""""""""""""""""""""""
 " fix issue with window scrolling during buffer switch
@@ -133,6 +126,35 @@ if v:version >= 700
     autocmd BufLeave * call AutoSaveWinView()
     autocmd BufEnter * call AutoRestoreWinView()
 endif
+
+" Give user ability to lock session and prevent accidental quitting
+function! Lock()
+  cnoremap <silent> q<CR> :call RejectQuit(0)<CR>
+  cnoremap <silent> wq<CR> :call RejectQuit(1)<CR>
+    echo("Session locked.")
+endfu
+function! Unlock()
+    cunmap q<CR>
+    echo("Session unlocked.")
+endfu
+
+:command Lock :call Lock()
+:command Unlock :call Unlock()
+
+" reject quit when locked
+function! RejectQuit(writeFile)
+    if (a:writeFile)
+        if (expand('%:t')=="")
+            echo "Can't save a file with no name."
+            return
+        endif
+        :write
+    endif
+
+    if (winnr('$')==1 && tabpagenr('$')==1)
+        echo("Session is locked; cannot quit. Run :Unlock to enable quitting.")
+    endif
+endfu
 """"""""""""""""""""""""""""""""""""""""
 
 "" syntastic settings
