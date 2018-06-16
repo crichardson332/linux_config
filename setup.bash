@@ -63,13 +63,14 @@ fi
 touch $BASHRC
 touch $BASHPROMPT
 touch $VIMRC
-cp bashrc $BASHRC
 cp bashprompt $BASHPROMPT
 cp vimrc $VIMRC
 
 # source OS specific bash setup scripts
 if [[ "$OSTYPE" == "darwin"* ]] ; then
+  cp bashrc_darwin $BASHRC
   source $BASH_PROFILE
 elif [[ "$OSTYPE" == "linux-gnu" ]] ; then
+  cp bashrc $BASHRC
   source $BASHRC
 fi

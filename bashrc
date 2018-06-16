@@ -163,7 +163,3 @@ function add_gtri-uav-install_to_ldpath() {
 
 # Set prompt
 source ~/.prompt.bash
-
-# source scrimmage
-source ~/.scrimmage/setup.bash
-

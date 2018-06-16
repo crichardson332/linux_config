@@ -12,6 +12,7 @@ alias rlg='source ~/.bash_profile'
 alias gits='git status'
 alias cld='cdl'
 # ssh aliases
+alias sshvm='ssh -p 3022 chris@127.0.0.1'
 alias sshvm3='ssh -p 2223 chris@127.0.0.1'
 alias sshlnx='ssh crichardson@192.168.90.201'
 
@@ -73,4 +74,3 @@ function cdu() {
 
 # Set prompt
 source ~/.prompt.bash
-
