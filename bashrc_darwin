@@ -20,6 +20,7 @@ alias sshlnx='ssh crichardson@192.168.90.201'
 git config --global user.name "Christopher Richardson"
 git config --global user.email christopher.richardson@gtri.gatech.edu
 git config --global alias.nicelog 'log --decorate --oneline --graph'
+git config --global push.default simple
 
 # dircolors for solarized
 eval `dircolors ~/.dircolors/dircolors-solarized/dircolors.ansi-dark`
