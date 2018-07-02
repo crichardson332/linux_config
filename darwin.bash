@@ -1,6 +1,8 @@
 #!/bin/bash
 
-brew install gtest curl git python vim safe-rm tmux grep coreutils trash-cli ninja tree
+brew update
+brew upgrade
+brew install gtest curl git python vim safe-rm tmux grep coreutils trash ninja tree
 
 BASH_PROFILE=$HOME"/.bash_profile"
 
