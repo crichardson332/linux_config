@@ -67,6 +67,7 @@ alias bd='./build_scripts/build'
 alias grep='grep --color=auto'
 alias cld='cdl'
 alias bdl='./build_scripts/lite_build'
+alias gitb='git branch -vv'
 
 # git
 git config --global user.name "Christopher Richardson"
