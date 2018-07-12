@@ -90,6 +90,9 @@ inoremap <c-l> <c-c><c-W>l
 " buffer cycling
 nnoremap <c-i> :bprev<CR>
 nnoremap <c-o> :bnext<CR>
+" visual
+vnoremap <c-a> 0
+vnoremap <c-e> $
 
 " bufferline settings
 let g:bufferline_echo = 0
