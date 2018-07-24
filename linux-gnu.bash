@@ -15,3 +15,6 @@ TERMINATOR_CONFIG=$HOME"/.config/terminator/config"
 # create config files
 touch $TERMINATOR_CONFIG
 cp terminator_config $TERMINATOR_CONFIG
+
+# remap caps lock to ctrl
+/usr/bin/setxkbmap -option caps:ctrl_modifier
