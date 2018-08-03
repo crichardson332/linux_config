@@ -56,6 +56,7 @@ eval `dircolors ~/.dircolors/dircolors-solarized/dircolors.ansi-dark`
 
 # aliases
 alias rm='trash'
+alias purge='/bin/rm'
 alias ls='ls --color=auto'
 alias ll='ls -lh'
 alias l='ls -lh'
@@ -166,5 +167,21 @@ function add_gtri-uav-install_to_ldpath() {
   echo "LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
 }
 
+function purge_scrimmage_paths() {
+  export SCRIMMAGE_DATA_PATH=""
+  export SCRIMMAGE_CONFIG_PATH=""
+  export SCRIMMAGE_PLUGIN_PATH=""
+  export SCRIMMAGE_MISSION_PATH=""
+}
+
 # Set prompt
 source ~/.prompt.bash
+
+# source scrimmage
+if [ -f ~/.scrimmage/setup.bash ]; then
+  source ~/.scrimmage/setup.bash
+fi
+
+if [ -f /opt/ros/kinetic/setup.bash ]; then
+  source /opt/ros/kinetic/setup.bash
+fi

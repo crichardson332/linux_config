@@ -3,6 +3,7 @@ alias grep='ggrep --color=auto'
 alias dircolors='gdircolors'
 # convent aliases
 alias rm='trash'
+alias purge='/bin/rm'
 alias ls='gls --color=auto'
 alias ll='ls -lh'
 alias l='ls -lh'
