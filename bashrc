@@ -79,6 +79,9 @@ git config --global push.default simple
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
+# remap caps lock
+setxkbmap -layout us -option ctrl:nocaps
+
 ### useful functions
 
 # cd and ls
