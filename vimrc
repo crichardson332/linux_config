@@ -66,6 +66,8 @@ endfunction
 "let g:NERDTreeMapJumpNextSibling="☻"
 "let g:NERDTreeMapJumpPrevSibling="☺"
 
+" leader
+:nnoremap <leader> <space>
 " movement
 noremap <c-e> <esc>$
 noremap <c-a> <esc>0

@@ -53,6 +53,10 @@ if [ ! -d $HOME"/.vim/bundle/vim-vinegar" ]; then
 git clone https://github.com/tpope/vim-vinegar.git $HOME/.vim/bundle/vim-vinegar
 vim -u NONE -c "helptags vim-vinegar/doc" -c q
 fi
+if [ ! -d $HOME"/.vim/pack/crich/start/commentary" ]; then
+git clone https://tpope.io/vim/commentary.git $HOME/.vim/pack/crich/start/commentary
+vim -u NONE -c "helptags commentary/doc" -c q
+fi
 
 # dircolors
 if [ ! -d $HOME"/.dircolors/dircolors-solarized" ]; then
