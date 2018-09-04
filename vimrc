@@ -14,6 +14,7 @@ execute pathogen#infect()
 :set number
 :set nostartofline
 :set clipboard=unnamed
+:set backspace=indent,eol,start
 " Set xml syntax highlighting for ros 
 autocmd bufread *.launch exe "setf xml"
 ":set nohlsearch
