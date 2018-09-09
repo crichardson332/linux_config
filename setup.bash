@@ -45,10 +45,6 @@ if [ ! -d $HOME"/.vim/bundle/vim-surround" ]; then
 git clone https://github.com/tpope/vim-surround.git $HOME/.vim/bundle/vim-surround
 vim -u NONE -c "helptags vim-surround/doc" -c q
 fi
-if [ ! -d $HOME"/.vim/bundle/vim-bufferline" ]; then
-git clone https://github.com/bling/vim-bufferline $HOME/.vim/bundle/vim-bufferline
-vim -u NONE -c "helptags vim-bufferline/doc" -c q
-fi
 if [ ! -d $HOME"/.vim/bundle/vim-vinegar" ]; then
 git clone https://github.com/tpope/vim-vinegar.git $HOME/.vim/bundle/vim-vinegar
 vim -u NONE -c "helptags vim-vinegar/doc" -c q
@@ -56,6 +52,14 @@ fi
 if [ ! -d $HOME"/.vim/pack/crich/start/commentary" ]; then
 git clone https://tpope.io/vim/commentary.git $HOME/.vim/pack/crich/start/commentary
 vim -u NONE -c "helptags commentary/doc" -c q
+fi
+if [ ! -d $HOME"/.vim/pack/crich/start/vim-airline" ]; then
+git clone https://github.com/vim-airline/vim-airline $HOME/.vim/pack/dist/start/vim-airline
+vim -u NONE -c "helptags vim-airline/doc" -c q
+fi
+if [ ! -d $HOME"/.vim/bundle/vim-airline-themes" ]; then
+git clone https://github.com/vim-airline/vim-airline-themes ~/.vim/bundle/vim-airline-themes
+vim -u NONE -c "helptags vim-airline-themes/doc" -c q
 fi
 
 # dircolors

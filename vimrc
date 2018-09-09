@@ -5,6 +5,7 @@ filetype plugin indent on
 syntax enable
 " pathogen
 execute pathogen#infect()
+
 :set nocompatible
 :set tabstop=2
 :set shiftwidth=2
@@ -15,18 +16,20 @@ execute pathogen#infect()
 :set nostartofline
 :set clipboard=unnamed
 :set backspace=indent,eol,start
-" Set xml syntax highlighting for ros 
+" Set xml syntax highlighting for ros
 autocmd bufread *.launch exe "setf xml"
 ":set nohlsearch
 
 " Functions to see a diff from the last save inside of vim
-:command Diff w !diff % - 
+:command Diff w !diff % -
 :command Tkdiff w !tkdiff % /dev/stdin
 :command Fold setlocal foldmethod=syntax
 :command Sign %s/@author.*/@author Christopher Richardson <christopher.richardson@gtri.gatech.edu>
 set background=dark
 "set background=light
 colorscheme solarized
+let g:airline_theme = 'solarized'
+let g:airline_solarized_bg='dark'
 
 "This unsets the 'last search pattern' register by hitting return
 nnoremap <CR> :noh<CR><CR>
@@ -45,7 +48,7 @@ function InsertOnTerm()
   if index(term_list(),bufnr('%')) != -1
     normal i
     normal :
-  endif 
+  endif
 endfunction
 
 function ForceQuitIfTerm()
@@ -53,7 +56,7 @@ function ForceQuitIfTerm()
     quit!
   else
     quit
-  endif 
+  endif
 endfunction
 
 :command Term term ++curwin
@@ -96,14 +99,6 @@ nnoremap <c-o> :bnext<CR>
 " visual
 vnoremap <c-a> 0
 vnoremap <c-e> $
-
-" bufferline settings
-let g:bufferline_echo = 0
-autocmd VimEnter *
-    \ let &statusline='%{bufferline#refresh_status()}' . bufferline#get_status_string()
-set laststatus=2
-let g:bufferline_rotate=2
-"let g:bufferline_fixed_index=0
 
 """"""""""""""""""""""""""""""""""""""""
 " fix issue with window scrolling during buffer switch
