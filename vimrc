@@ -31,6 +31,13 @@ let g:airline_theme = 'solarized'
 let g:airline_solarized_bg='dark'
 let g:airline#extensions#tabline#enabled = 1
 
+" ALE
+let g:ale_fixers = {
+      \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \ 'cpp': ['cpplint'],
+      \}
+let g:ale_fix_on_save = 1
+
 "This unsets the 'last search pattern' register by hitting return
 nnoremap <CR> :noh<CR><CR>
 

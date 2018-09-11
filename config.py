@@ -15,22 +15,26 @@ script_dir = os.path.dirname(os.path.realpath(__file__))
 def install_vim():
     if not os.path.exists(user_home + '/.vim/pack/crich/start'):
         os.makedirs(user_home + '/.vim/pack/crich/start')
+
+    # plugins
+    if not os.path.exists(user_home + '/.vim/pack/crich/start/ale'):
+        os.system("git clone https://github.com/w0rp/ale.git ~/.vim/pack/crich/start/ale")
+    if not os.path.exists(user_home + '/.vim/pack/crich/start/commentary'):
+        os.system("git clone https://tpope.io/vim/commentary.git $HOME/.vim/pack/crich/start/commentary")
+    if not os.path.exists(user_home + '/.vim/bundle/ctrlp.vim'):
+        os.system("git clone https://github.com/kien/ctrlp.vim.git $HOME/.vim/bundle/ctrlp.vim")
+    if not os.path.exists(user_home + '/.vim/bundle/tabular'):
+        os.system("git clone git://github.com/godlygeek/tabular.git $HOME/.vim/bundle/tabular")
     if not os.path.exists(user_home + '/.vim/pack/crich/start/vim-airline'):
         os.system("git clone https://github.com/vim-airline/vim-airline ~/.vim/pack/crich/start/vim-airline")
     if not os.path.exists(user_home + '/.vim/bundle/vim-airline-themes'):
         os.system("git clone https://github.com/vim-airline/vim-airline-themes ~/.vim/bundle/vim-airline-themes")
     if not os.path.exists(user_home + '/.vim/bundle/vim-colors-solarized'):
         os.system("git clone git://github.com/altercation/vim-colors-solarized.git $HOME/.vim/bundle/vim-colors-solarized")
-    if not os.path.exists(user_home + '/.vim/bundle/tabular'):
-        os.system("git clone git://github.com/godlygeek/tabular.git $HOME/.vim/bundle/tabular")
-    if not os.path.exists(user_home + '/.vim/bundle/ctrlp.vim'):
-        os.system("git clone https://github.com/kien/ctrlp.vim.git $HOME/.vim/bundle/ctrlp.vim")
     if not os.path.exists(user_home + '/.vim/bundle/vim-fugitive'):
         os.system("git clone https://github.com/tpope/vim-fugitive.git $HOME/.vim/bundle/vim-fugitive")
     if not os.path.exists(user_home + '/.vim/bundle/vim-surround'):
         os.system("git clone https://github.com/tpope/vim-surround.git $HOME/.vim/bundle/vim-surround")
-    if not os.path.exists(user_home + '/.vim/pack/crich/start/commentary'):
-        os.system("git clone https://tpope.io/vim/commentary.git $HOME/.vim/pack/crich/start/commentary")
 
     shutil.copy(script_dir + '/vimrc', user_home + '/.vimrc')
 
@@ -63,10 +67,10 @@ def main():
         user_home = env['HOME']
     except KeyError:
         print("ERROR: Cannot run setup.py as root.")
-        return 1 
+        return 1
     if 'root' in user_home:
         print("ERROR: Cannot run setup.py as root.")
-        return 1 
+        return 1
 
     # arguments
     parser=argparse.ArgumentParser(description='Command line setup script.')
@@ -94,37 +98,6 @@ def main():
 
     if not os.path.exists(user_home + '/.dircolors/dircolors-solarized'):
         os.system("git clone https://github.com/seebi/dircolors-solarized.git $HOME/.dircolors/dircolors-solarized")
-
-    # if not os.path.isdir(args.out_dir):
-    #     print("Output directory doesn't exist: %s" % args.out_dir)
-    #     return -1
-
-    # # Get this script's current directory
-    # this_dir = os.path.dirname(os.path.realpath(__file__))
-
-    # # Copy the cmake project template to the output directory
-    # dst_dir = args.out_dir + "/" + args.project_name
-    # try:
-    #     shutil.copytree(this_dir + "/templates/cmake-project", dst_dir)
-    # except OSError:
-    #     print('The destination directory already exists: %s' % dst_dir)
-    #     print('Choose a new output directory or remove the existing directory.')
-    #     return -1
-    
-    # # Search and replace project name over all project files
-    # for dname, dirs, files in os.walk(dst_dir):
-    #     for fname in files:
-    #         fpath = os.path.join(dname, fname)
-    #         with open(fpath) as f:
-    #             s = f.read()
-    #             s = s.replace("(>>>PROJECT_NAME<<<)", args.project_name)
-    #         with open(fpath, "w") as f:
-    #             f.write(s)
-
-    # # Rename the ./include/cmake-project to the appropriate project
-    # # name
-    # os.rename(dst_dir+"/include/cmake-project",
-    #           dst_dir+"/include/" + args.project_name)
 
     return 0
 
