@@ -5,7 +5,6 @@ filetype plugin indent on
 syntax enable
 " pathogen
 execute pathogen#infect()
-
 :set nocompatible
 :set tabstop=2
 :set shiftwidth=2
@@ -30,6 +29,7 @@ set background=dark
 colorscheme solarized
 let g:airline_theme = 'solarized'
 let g:airline_solarized_bg='dark'
+let g:airline#extensions#tabline#enabled = 1
 
 "This unsets the 'last search pattern' register by hitting return
 nnoremap <CR> :noh<CR><CR>
