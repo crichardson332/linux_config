@@ -4,7 +4,7 @@
 if [[ "$OSTYPE" == "darwin"* ]] ; then
   # install command line utils, homebrew, and python
   xcode-select --install
-  which -s brew
+  command -v brew
   if [[ $? != 0 ]] ; then
       # Install Homebrew
       echo "Installing Homebrew."
@@ -15,14 +15,14 @@ if [[ "$OSTYPE" == "darwin"* ]] ; then
   brew update
   brew upgrade
   brew install gtest curl git python vim safe-rm tmux grep coreutils trash ninja tree
-  touch $HOME/.bash_profile
+  touch "$HOME/.bash_profile"
 
 elif [[ "$OSTYPE" == "linux-gnu" ]] ; then
   # remap caps lock to ctrl
   /usr/bin/setxkbmap -option caps:ctrl_modifier
 
   # terminator
-  touch $HOME/.config/terminator/config
+  touch "$HOME/.config/terminator/config"
 
   # Debian
   if which apt-get &> /dev/null; then
@@ -31,12 +31,12 @@ elif [[ "$OSTYPE" == "linux-gnu" ]] ; then
     sudo add-apt-repository ppa:jonathonf/vim
     sudo apt-get update
     sudo apt-get install build-essential libgtest-dev curl terminator git python vim safe-rm openssh-server tmux vim trash-cli
-  
+
   # OpenSuse, Mandriva, Fedora, CentOs, ecc. (with rpm)
   elif which rpm &> /dev/null; then
     echo "This is Red Hat / CentOS. Using rpm."
     sudo yum install rh-python36 build-essential libgtest-dev curl terminator git python safe-rm openssh-server tmux vim trash-cli
-  
+
   # ArchLinux (with pacman)
   elif which pacman &> /dev/null; then
     echo "This is ArchLinux. Using pacman."
