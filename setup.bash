@@ -14,7 +14,7 @@ if [[ "$OSTYPE" == "darwin"* ]] ; then
   fi
   brew update
   brew upgrade
-  brew install gtest curl git python vim safe-rm tmux grep coreutils trash ninja tree
+  brew install gtest git python vim safe-rm tmux grep coreutils trash ninja tree
   touch "$HOME/.bash_profile"
 
 elif [[ "$OSTYPE" == "linux-gnu" ]] ; then
@@ -46,10 +46,6 @@ elif [[ "$OSTYPE" == "linux-gnu" ]] ; then
     exit
   fi
 fi
-
-# vim pathogen
-mkdir -p "$HOME/.vim/autoload ~/.vim/bundle"
-curl -LSso "$HOME/.vim/autoload/pathogen.vim" https://tpo.pe/pathogen.vim
 
 # create folders if they dont exist
 if [ ! -d "$HOME/.vim" ]; then
