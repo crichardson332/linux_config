@@ -44,13 +44,9 @@ def install_vim():
 
 def install_bashrc():
     shutil.copy(script_dir + '/prompt.bash', user_home + '/.prompt.bash')
-    if platform == "linux" or platform == "linux2":
-        shutil.copy(script_dir + '/bashrc', user_home + '/.bashrc')
-    elif platform == "darwin":
-        shutil.copy(script_dir + '/bashrc_darwin', user_home + '/.bashrc')
+    shutil.copy(script_dir + '/bashrc', user_home + '/.bashrc')
+    if platform == "darwin":
         shutil.copy(script_dir + '/bash_profile', user_home + '/.bash_profile')
-    else:
-        return
 
 def install_terminator():
     if platform == "linux" or platform == "linux2":

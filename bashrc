@@ -1,60 +1,30 @@
-# check if ssh session
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-  SESSION_TYPE=ssh
+# platform specific config
+if [[ $OSTYPE == "linux-gnu" ]]; then
+  # check if ssh session
+  if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    export DISPLAY=":0"
+  fi
+
+  # append to the history file, don't overwrite it
+  shopt -s histappend
+
+  # relad config
+  alias rlg='source ~/.bashrc'
+
+  # remap caps lock
+  setxkbmap -layout us -option ctrl:nocaps
+elif [[ $OSTYPE == "darwin*" ]]; then
+  alias grep='ggrep --color=auto'
+  alias dircolors='gdircolors'
+  alias rlg='source ~/.bash_profile'
 fi
 
-# set display to remote (0) during ssh session
-if [ $SESSION_TYPE="ssh" ]; then
-  export DISPLAY=":0"
-fi
-
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
-
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# colored manpages
-if [ -f ~/.bash_mancolors ]; then
-    . ~/.bash_mancolors
-fi
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi  
-fi
+# cross platform config
 
 # dircolors for solarized
-eval `dircolors ~/.dircolors/dircolors-solarized/dircolors.ansi-dark`
+eval "$(dircolors "$HOME/.dircolors/dircolors-solarized/dircolors.ansi-dark")"
 
-# prompt
-#export PS1="\n\[\e[31m\][\[\e[m\]\t\[\e[31m\]]\[\e[m\] \w/\n\[\e[36m\]\u\[\e[m\]@\[\e[33m\]\h\[\e[m\]\\$ "
-
-# aliases
+# cross platform aliases
 alias rm='trash'
 alias purge='/bin/rm'
 alias ls='ls --color=auto'
@@ -62,13 +32,17 @@ alias ll='ls -lh'
 alias l='ls -lh'
 alias lll='ls -lh'
 alias la='ls -lsah'
-alias rlg='source ~/.bashrc'
 alias gits='git status'
 alias bd='./build_scripts/build'
 alias grep='grep --color=auto'
 alias cld='cdl'
 alias bdl='./build_scripts/lite_build'
 alias gitb='git branch -vv'
+
+# ssh
+alias sshvm='ssh -p 3022 chris@127.0.0.1'
+alias sshvm3='ssh -p 2223 chris@127.0.0.1'
+alias sshlnx='ssh crichardson@192.168.90.201'
 
 # git
 git config --global user.name "Christopher Richardson"
@@ -79,9 +53,6 @@ git config --global push.default simple
 # Editor
 export VISUAL=vim
 export EDITOR="$VISUAL"
-
-# remap caps lock
-setxkbmap -layout us -option ctrl:nocaps
 
 ### useful functions
 
@@ -106,10 +77,10 @@ function greplc ()
 #  grep2l pattern1 pattern2 [<options>]
 #  Options:
 #  -h      Print this message
-#  "  
+#  "
 function grep2l ()
 {
-  grep -Pzo '$1.*\n.*$2' "${@:2}"
+  grep -Pzo "$1.*\\n.*$2" "${@:2}"
 }
 
 function llg() {
@@ -117,7 +88,7 @@ function llg() {
 }
 
 function vimfind() {
-  vim $( find $@ )
+  vim "$( find "$@" )"
 }
 
 function cdu() {
@@ -149,7 +120,7 @@ Usage:
 
 # FIXME because I have to do this :/
 function bdx () {
-  last3dir=$(basename $(dirname $(dirname "$PWD")))/$(basename $(dirname "$PWD"))/$(basename "$PWD")
+  last3dir=$(basename "$(dirname "$(dirname "$PWD")")")/$(basename "$(dirname "$PWD")")/$(basename "$PWD")
   if [ "$last3dir" == "gtri-bees/srcx/build" ]; then
     cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX=~/gtri-uav-install
   else
@@ -174,14 +145,15 @@ function purge_scrimmage_paths() {
   export SCRIMMAGE_MISSION_PATH=""
 }
 
-# Set prompt
+# shellcheck source=/dev/null
 source ~/.prompt.bash
 
-# source scrimmage
 if [ -f ~/.scrimmage/setup.bash ]; then
+  # shellcheck source=/dev/null
   source ~/.scrimmage/setup.bash
 fi
 
 if [ -f /opt/ros/kinetic/setup.bash ]; then
+  # shellcheck source=/dev/null
   source /opt/ros/kinetic/setup.bash
 fi
