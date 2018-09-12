@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 import os
 from os.path import expanduser
 import shutil
