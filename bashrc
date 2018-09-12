@@ -10,11 +10,12 @@ if [[ $OSTYPE == "linux-gnu" ]]; then
 
   # relad config
   alias rlg='source ~/.bashrc'
+  alias ls='ls --color=auto'
 
   # remap caps lock
   setxkbmap -layout us -option ctrl:nocaps
 elif [[ $OSTYPE == "darwin"* ]]; then
-  alias ls='gls'
+  alias ls='gls --color=auto'
   alias grep='ggrep --color=auto'
   alias dircolors='gdircolors'
   alias rlg='source ~/.bash_profile'
@@ -28,7 +29,6 @@ eval "$(dircolors "$HOME/.dircolors/dircolors-solarized/dircolors.ansi-dark")"
 # cross platform aliases
 alias rm='trash'
 alias purge='/bin/rm'
-alias ls='ls --color=auto'
 alias ll='ls -lh'
 alias l='ls -lh'
 alias lll='ls -lh'
