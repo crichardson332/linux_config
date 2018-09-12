@@ -13,7 +13,8 @@ if [[ $OSTYPE == "linux-gnu" ]]; then
 
   # remap caps lock
   setxkbmap -layout us -option ctrl:nocaps
-elif [[ $OSTYPE == "darwin*" ]]; then
+elif [[ $OSTYPE == "darwin"* ]]; then
+  alias ls='gls'
   alias grep='ggrep --color=auto'
   alias dircolors='gdircolors'
   alias rlg='source ~/.bash_profile'
