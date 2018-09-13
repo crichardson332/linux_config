@@ -14,7 +14,7 @@ if [[ "$OSTYPE" == "darwin"* ]] ; then
   fi
   brew update
   brew upgrade
-  brew install gtest git python vim safe-rm tmux grep coreutils trash ninja tree
+  brew install gtest git python vim safe-rm tmux grep coreutils trash ninja tree clang-format
   touch "$HOME/.bash_profile"
 
 elif [[ "$OSTYPE" == "linux-gnu" ]] ; then
