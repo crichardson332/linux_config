@@ -34,7 +34,7 @@ let g:airline#extensions#tabline#enabled = 1
 " ALE
 let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \ 'cpp': ['cpplint'],
+      \ 'cpp': ['clang-format'],
       \}
 let g:ale_fix_on_save = 1
 
