@@ -27,9 +27,14 @@ autocmd bufread *.launch exe "setf xml"
 set background=dark
 "set background=light
 colorscheme solarized
+
+" vim-airline settings
 let g:airline_theme = 'solarized'
 let g:airline_solarized_bg='dark'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_section_b = ''
+let g:airline_section_c = ''
 
 " ALE
 let g:ale_fixers = {
@@ -37,6 +42,7 @@ let g:ale_fixers = {
       \ 'cpp': ['clang-format'],
       \}
 let g:ale_fix_on_save = 1
+map <leader>al :ALEToggle<CR>
 
 "This unsets the 'last search pattern' register by hitting return
 nnoremap <CR> :noh<CR><CR>
@@ -84,6 +90,10 @@ noremap <c-e> <esc>$
 noremap <c-a> <esc>0
 inoremap <c-e> <esc><S-a>
 inoremap <c-a> <esc><S-i>
+nnoremap <c-k> 10k
+nnoremap <c-j> 10j
+inoremap <c-k> <c-c>10ka
+inoremap <c-j> <c-c>10ja
 " remap ctrl-c to esc to get abbreviation finishing functionality
 inoremap <c-c> <esc>
 " tab remaps
@@ -92,12 +102,12 @@ tnoremap <c-t> <c-\><c-n>:tabnew<CR>
 " window remaps
 nnoremap <c-g> :vsplit<CR>
 nnoremap <c-b> :split<CR>
-nnoremap <c-k> <c-W>k<CR>
-nnoremap <c-j> <c-W>j<CR>
+" nnoremap <c-k> <c-W>k<CR>
+" nnoremap <c-j> <c-W>j<CR>
+" inoremap <c-j> <c-c><c-W>k
+" inoremap <c-k> <c-c><c-W>j
 nnoremap <c-h> <c-W>h<CR>k
 nnoremap <c-l> <c-W>l<CR>k
-inoremap <c-j> <c-c><c-W>k
-inoremap <c-k> <c-c><c-W>j
 inoremap <c-h> <c-c><c-W>h
 inoremap <c-l> <c-c><c-W>l
 " buffer cycling
