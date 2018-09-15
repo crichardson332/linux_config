@@ -14,7 +14,8 @@ if [[ "$OSTYPE" == "darwin"* ]] ; then
   fi
   brew update
   brew upgrade
-  brew install gtest git python vim safe-rm tmux grep coreutils trash ninja tree clang-format
+  brew install gtest git python python3 vim safe-rm tmux grep coreutils trash ninja tree clang-format
+  pip3 install gitpython
   touch "$HOME/.bash_profile"
 
 elif [[ "$OSTYPE" == "linux-gnu" ]] ; then
@@ -57,4 +58,11 @@ fi
 
 # run python setup
 ScriptDir="$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )";
-python "$ScriptDir/config.py" --all
+python3 "$ScriptDir/config.py" --all
+
+# source bash config
+if [[ "$OSTYPE" == "darwin"* ]] ; then
+  source "$HOME/.bash_profile"
+else
+  source "$HOME/.bashrc"
+fi
