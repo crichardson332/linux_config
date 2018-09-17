@@ -38,10 +38,14 @@ let g:airline_section_c = ''
 
 " ALE
 let g:ale_fixers = {
-      \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \ 'cpp': ['clang-format'],
-      \}
+  \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+  \}
 let g:ale_fix_on_save = 1
+let g:ale_linters = {
+  \ 'cpp': ['cppcheck'],
+  \}
+let g:ale_lint_on_enter = 1
+
 map <leader>al :ALEToggle<CR>
 
 "This unsets the 'last search pattern' register by hitting return
@@ -90,8 +94,8 @@ noremap <c-e> <esc>$
 noremap <c-a> <esc>0
 inoremap <c-e> <esc><S-a>
 inoremap <c-a> <esc><S-i>
-nnoremap <c-k> 10k
-nnoremap <c-j> 10j
+noremap <c-k> 10k
+noremap <c-j> 10j
 inoremap <c-k> <c-c>10ka
 inoremap <c-j> <c-c>10ja
 " remap ctrl-c to esc to get abbreviation finishing functionality
