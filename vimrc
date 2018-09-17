@@ -179,6 +179,10 @@ function! RejectQuit(writeFile)
         echo("Session is locked; cannot quit. Run :Unlock to enable quitting.")
     endif
 endfu
+
+" auto save session on quit
+autocmd BufWinLeave *.* mks! ~/.vim/sessions/last_sess.vim
+
 """"""""""""""""""""""""""""""""""""""""
 
 "" syntastic settings
