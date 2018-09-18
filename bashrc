@@ -11,6 +11,7 @@ if [[ $OSTYPE == "linux-gnu" ]]; then
   # relad config
   alias rlg='source ~/.bashrc'
   alias ls='ls --color=auto'
+  alias grep='grep --color=auto'
 
   # remap caps lock
   setxkbmap -layout us -option ctrl:nocaps
@@ -35,7 +36,6 @@ alias lll='ls -lh'
 alias la='ls -lsah'
 alias gits='git status'
 alias bd='./build_scripts/build'
-alias grep='grep --color=auto'
 alias cld='cdl'
 alias bdl='./build_scripts/lite_build'
 alias gitb='git branch -vv'

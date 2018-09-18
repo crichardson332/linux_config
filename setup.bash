@@ -9,12 +9,8 @@ if [[ "$OSTYPE" == "darwin"* ]] ; then
       # Install Homebrew
       echo "Installing Homebrew."
       ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  else
-      echo "Updating Homebrew."
   fi
-  brew update
-  brew upgrade
-  brew install gtest git python python3 vim safe-rm tmux grep coreutils trash ninja tree clang-format
+  HOMEBREW_NO_AUTO_UPDATE=1 brew install gtest git python python3 vim safe-rm tmux grep coreutils trash ninja tree clang-format
   pip3 install gitpython
   touch "$HOME/.bash_profile"
 
