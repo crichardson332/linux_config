@@ -15,9 +15,9 @@ def install_vim():
     if not os.path.exists(user_home + '/.vim/pack/crich/start'):
         os.makedirs(user_home + '/.vim/pack/crich/start')
 
-    # pathogen
-    if not os.path.exists(user_home + '/.vim/autoload/pathogen.vim'):
-        os.system("curl -LSso \"$HOME/.vim/autoload/pathogen.vim\" https://tpo.pe/pathogen.vim")
+    # # pathogen
+    # if not os.path.exists(user_home + '/.vim/autoload/pathogen.vim'):
+    #     os.system("curl -LSso \"$HOME/.vim/autoload/pathogen.vim\" https://tpo.pe/pathogen.vim")
 
     # plugins
     if not os.path.exists(user_home + '/.vim/pack/crich/start/ale'):
