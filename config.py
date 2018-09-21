@@ -24,20 +24,33 @@ def install_vim():
         os.system("git clone https://github.com/w0rp/ale.git ~/.vim/pack/crich/start/ale")
     if not os.path.exists(user_home + '/.vim/pack/crich/start/commentary'):
         os.system("git clone https://tpope.io/vim/commentary.git $HOME/.vim/pack/crich/start/commentary")
-    if not os.path.exists(user_home + '/.vim/bundle/ctrlp.vim'):
-        os.system("git clone https://github.com/kien/ctrlp.vim.git $HOME/.vim/bundle/ctrlp.vim")
-    if not os.path.exists(user_home + '/.vim/bundle/tabular'):
-        os.system("git clone git://github.com/godlygeek/tabular.git $HOME/.vim/bundle/tabular")
+    if not os.path.exists(user_home + '/.vim/pack/crich/start/ctrlp.vim'):
+        os.system("git clone https://github.com/kien/ctrlp.vim $HOME/.vim/pack/crich/start/ctrlp.vim")
+    if not os.path.exists(user_home + '/.vim/pack/crich/start/SyntaxRange'):
+        os.system("git clone https://github.com/vim-scripts/SyntaxRange $HOME/.vim/pack/crich/start/SyntaxRange")
+
+    if not os.path.exists(user_home + '/.vim/pack/crich/start/tabular'):
+        os.system("git clone git://github.com/godlygeek/tabular $HOME/.vim/pack/crich/start/tabular")
     if not os.path.exists(user_home + '/.vim/pack/crich/start/vim-airline'):
         os.system("git clone https://github.com/vim-airline/vim-airline ~/.vim/pack/crich/start/vim-airline")
-    if not os.path.exists(user_home + '/.vim/bundle/vim-airline-themes'):
-        os.system("git clone https://github.com/vim-airline/vim-airline-themes ~/.vim/bundle/vim-airline-themes")
-    if not os.path.exists(user_home + '/.vim/bundle/vim-colors-solarized'):
-        os.system("git clone git://github.com/altercation/vim-colors-solarized.git $HOME/.vim/bundle/vim-colors-solarized")
-    if not os.path.exists(user_home + '/.vim/bundle/vim-fugitive'):
-        os.system("git clone https://github.com/tpope/vim-fugitive.git $HOME/.vim/bundle/vim-fugitive")
-    if not os.path.exists(user_home + '/.vim/bundle/vim-surround'):
-        os.system("git clone https://github.com/tpope/vim-surround.git $HOME/.vim/bundle/vim-surround")
+    if not os.path.exists(user_home + '/.vim/pack/crich/start/vim-airline-themes'):
+        os.system("git clone https://github.com/vim-airline/vim-airline-themes ~/.vim/pack/crich/start/vim-airline-themes")
+    if not os.path.exists(user_home + '/.vim/pack/crich/start/vim-colors-solarized'):
+        os.system("git clone git://github.com/altercation/vim-colors-solarized.git $HOME/.vim/pack/crich/start/vim-colors-solarized")
+    if not os.path.exists(user_home + '/.vim/pack/crich/start/vim-fugitive'):
+        os.system("git clone https://github.com/tpope/vim-fugitive $HOME/.vim/pack/crich/start/vim-fugitive")
+    if not os.path.exists(user_home + '/.vim/pack/crich/start/vim-orgmode'):
+        os.system("git clone https://github.com/jceb/vim-orgmode $HOME/.vim/pack/crich/start/vim-orgmode")
+    if not os.path.exists(user_home + '/.vim/pack/crich/start/vim-repeat'):
+        os.system("git clone https://github.com/tpope/vim-repeat $HOME/.vim/pack/crich/start/vim-repeat")
+    if not os.path.exists(user_home + '/.vim/pack/crich/start/vim-speeddating'):
+        os.system("git clone https://github.com/tpope/vim-speeddating $HOME/.vim/pack/crich/start/vim-speeddating")
+    if not os.path.exists(user_home + '/.vim/pack/crich/start/vim-surround'):
+        os.system("git clone https://github.com/tpope/vim-surround $HOME/.vim/pack/crich/start/vim-surround")
+    if not os.path.exists(user_home + '/.vim/pack/crich/start/vim-vinegar'):
+        os.system("git clone https://github.com/tpope/vim-vinegar $HOME/.vim/pack/crich/start/vim-vinegar")
+    if not os.path.exists(user_home + '/.vim/pack/crich/start/utl.vim'):
+        os.system("git clone https://github.com/vim-scripts/utl.vim $HOME/.vim/pack/crich/start/utl.vim")
 
     shutil.copy(script_dir + '/vimrc', user_home + '/.vimrc')
 
@@ -49,6 +62,8 @@ def install_bashrc():
 
 def install_terminator():
     if platform == "linux" or platform == "linux2":
+        if not os.path.exists(user_home + '/.config/terminator'):
+            os.makedirs(user_home + '/.config/terminator')
         shutil.copy(script_dir + '/terminator_config', user_home + '/.config/terminator/config')
     elif platform == "darwin":
         pass

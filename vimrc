@@ -3,8 +3,6 @@ let NERDTreeHijackNetrw=1
 filetype on
 filetype plugin indent on
 syntax enable
-" pathogen
-execute pathogen#infect()
 :set nocompatible
 :set tabstop=2
 :set shiftwidth=2
