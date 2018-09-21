@@ -11,7 +11,6 @@ if [[ "$OSTYPE" == "darwin"* ]] ; then
       ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
   HOMEBREW_NO_AUTO_UPDATE=1 brew install gtest git python python3 vim safe-rm tmux grep coreutils trash ninja tree clang-format
-  pip3 install gitpython
   touch "$HOME/.bash_profile"
 
 elif [[ "$OSTYPE" == "linux-gnu" ]] ; then
@@ -27,7 +26,7 @@ elif [[ "$OSTYPE" == "linux-gnu" ]] ; then
     # install packages, including vim8 from ppa
     sudo add-apt-repository ppa:jonathonf/vim
     sudo apt-get update
-    sudo apt-get install build-essential libgtest-dev curl terminator git python vim safe-rm openssh-server tmux vim trash-cli
+    sudo apt-get install build-essential libgtest-dev curl terminator git python python3 python3-pip vim safe-rm openssh-server tmux vim trash-cli
 
   # OpenSuse, Mandriva, Fedora, CentOs, ecc. (with rpm)
   elif command -v rpm &> /dev/null; then
@@ -53,6 +52,7 @@ if [ ! -d "$HOME/.dircolors" ]; then
 fi
 
 # run python setup
+pip3 install gitpython
 ScriptDir="$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )";
 python3 "$ScriptDir/config.py" --all
 
