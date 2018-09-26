@@ -119,6 +119,17 @@ nnoremap <c-o> :bnext<CR>
 vnoremap <c-a> 0
 vnoremap <c-e> $
 
+" save current session
+function s:SaveCurSess()
+    call mkdir(expand("~/.vim/sessions"), "p")
+    mks! ~/.vim/sessions/last_sess.vim
+endfunction
+
+" auto save session on quit
+" autocmd BufWinLeave *.* :call s:SaveCurSess()
+" autocmd BufWritePre *.* :call s:SaveCurSess()
+autocmd BufWritePre *.* :call s:SaveCurSess()
+
 """"""""""""""""""""""""""""""""""""""""
 " fix issue with window scrolling during buffer switch
 """"""""""""""""""""""""""""""""""""""""
@@ -177,9 +188,6 @@ function! RejectQuit(writeFile)
         echo("Session is locked; cannot quit. Run :Unlock to enable quitting.")
     endif
 endfu
-
-" auto save session on quit
-autocmd BufWinLeave *.* mks! ~/.vim/sessions/last_sess.vim
 
 """"""""""""""""""""""""""""""""""""""""
 
