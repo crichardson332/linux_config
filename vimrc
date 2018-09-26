@@ -92,11 +92,11 @@ noremap <c-e> <esc>$
 noremap <c-a> <esc>0
 inoremap <c-e> <esc><S-a>
 inoremap <c-a> <esc><S-i>
-noremap <c-k> 10k
-noremap <c-j> 10j
-noremap <c-h> <s-h>
-noremap <c-l> <s-l>
-noremap <c-m> <s-m>
+nnoremap <c-k> 10k
+nnoremap <c-j> 10j
+nnoremap <c-h> <s-h>
+nnoremap <c-l> <s-l>
+nnoremap <c-m> <s-m>
 inoremap <c-k> <c-c>10ka
 inoremap <c-j> <c-c>10ja
 inoremap <c-h> <c-c><s-h>i
