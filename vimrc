@@ -94,8 +94,13 @@ inoremap <c-e> <esc><S-a>
 inoremap <c-a> <esc><S-i>
 noremap <c-k> 10k
 noremap <c-j> 10j
+noremap <c-h> <s-h>
+noremap <c-l> <s-l>
+noremap <c-m> <s-m>
 inoremap <c-k> <c-c>10ka
 inoremap <c-j> <c-c>10ja
+inoremap <c-h> <c-c><s-h>i
+inoremap <c-l> <c-c><s-l>i
 " remap ctrl-c to esc to get abbreviation finishing functionality
 inoremap <c-c> <esc>
 " tab remaps
@@ -108,10 +113,10 @@ nnoremap <c-b> :split<CR>
 " nnoremap <c-j> <c-W>j<CR>
 " inoremap <c-j> <c-c><c-W>k
 " inoremap <c-k> <c-c><c-W>j
-nnoremap <c-h> <c-W>h<CR>k
-nnoremap <c-l> <c-W>l<CR>k
-inoremap <c-h> <c-c><c-W>h
-inoremap <c-l> <c-c><c-W>l
+nnoremap <s-h> <c-W>h<CR>k
+nnoremap <s-l> <c-W>l<CR>k
+inoremap <s-h> <c-c><c-W>h
+inoremap <s-l> <c-c><c-W>l
 " buffer cycling
 nnoremap <c-i> :bprev<CR>
 nnoremap <c-o> :bnext<CR>

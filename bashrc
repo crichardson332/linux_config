@@ -88,8 +88,15 @@ function llg() {
   vim "$(find $1* -type f -printf "%C@ %p\n" | sort | tail -n 1 | cut -d " " -f 2-)"
 }
 
+# vim functions
 function vimfind() {
   vim "$( find "$@" )"
+}
+function vimcpp() {
+  vim $(find -P . -not -path '*/\.*' -not -path '*/build*' -type f -regex '.*\.\(cpp\|hpp\|h\|cc\|c\)$')
+}
+function vimchanged() {
+  vim $(git diff --name-only HEAD^ HEAD)
 }
 
 function cdu() {
@@ -97,10 +104,6 @@ function cdu() {
     cd $(printf "%0.s../" $(seq 1 $1 ));
     ls -lh
   fi
-}
-
-function vimcpp() {
-  vim $(find -P . -not -path '*/\.*' -not -path '*/build*' -type f -regex '.*\.\(cpp\|hpp\|h\|cc\|c\)$')
 }
 
 function change_occurrences_of_name() {
