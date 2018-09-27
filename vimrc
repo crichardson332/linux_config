@@ -96,7 +96,7 @@ nnoremap <c-k> 10k
 nnoremap <c-j> 10j
 nnoremap <c-h> <s-h>
 nnoremap <c-l> <s-l>
-nnoremap <c-m> <s-m>
+nnoremap <c-n> <s-m>
 inoremap <c-k> <c-c>10ka
 inoremap <c-j> <c-c>10ja
 inoremap <c-h> <c-c><s-h>i
