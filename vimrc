@@ -115,8 +115,6 @@ nnoremap <c-b> :split<CR>
 " inoremap <c-k> <c-c><c-W>j
 nnoremap <s-h> <c-W>h<CR>k
 nnoremap <s-l> <c-W>l<CR>k
-inoremap <s-h> <c-c><c-W>h
-inoremap <s-l> <c-c><c-W>l
 " buffer cycling
 nnoremap <c-i> :bprev<CR>
 nnoremap <c-o> :bnext<CR>
