@@ -90,6 +90,8 @@ endfunction
 " movement
 noremap <c-e> <esc>$
 noremap <c-a> <esc>0
+vnoremap <c-e> <esc>$
+vnoremap <c-a> <esc>0
 inoremap <c-e> <esc><S-a>
 inoremap <c-a> <esc><S-i>
 nnoremap <c-k> 10k
