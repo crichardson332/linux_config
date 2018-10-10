@@ -43,6 +43,7 @@ alias gitb='git branch -vv'
 # ssh
 alias sshvm='ssh -p 3022 chris@127.0.0.1'
 alias sshvm3='ssh -p 2223 chris@127.0.0.1'
+alias sshvmd='ssh -p 2224 chris@127.0.0.1'
 alias sshlnx='ssh crichardson@192.168.90.201'
 
 # git
@@ -147,6 +148,11 @@ function purge_scrimmage_paths() {
   export SCRIMMAGE_CONFIG_PATH=""
   export SCRIMMAGE_PLUGIN_PATH=""
   export SCRIMMAGE_MISSION_PATH=""
+}
+
+# cmake
+function cmake_find_package() {
+  cmake --find-package -DNAME="$1" -DCOMPILER_ID=GNU -DMODE=EXIST -DLANGUAGE=CXX
 }
 
 # shellcheck source=/dev/null

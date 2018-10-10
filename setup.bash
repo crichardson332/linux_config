@@ -10,7 +10,7 @@ if [[ "$OSTYPE" == "darwin"* ]] ; then
       echo "Installing Homebrew."
       ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
-  HOMEBREW_NO_AUTO_UPDATE=1 brew install gtest git python python3 vim safe-rm tmux grep coreutils trash ninja tree clang-format
+  HOMEBREW_NO_AUTO_UPDATE=1 brew install gtest git python python3 vim safe-rm tmux grep coreutils trash ninja tree clang-format gnu-sed --with-default-names
   touch "$HOME/.bash_profile"
 
 elif [[ "$OSTYPE" == "linux-gnu" ]] ; then
