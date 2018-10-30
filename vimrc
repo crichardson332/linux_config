@@ -49,51 +49,37 @@ map <leader>al :ALEToggle<CR>
 "This unsets the 'last search pattern' register by hitting return
 nnoremap <CR> :noh<CR><CR>
 
-"autocmd vimenter * Fold
-"autocmd vimenter * NERDTree | wincmd p
-"autocmd vimenter * NERDTree
-" close vim if NERDTree is the only buffer left
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
 " ctrlp
 "set runtimepath^=~/.vim/bundle/ctrlp.vim
 
-" term functions
-function InsertOnTerm()
-  if index(term_list(),bufnr('%')) != -1
-    normal i
-    normal :
-  endif
-endfunction
+" " term functions
+" function InsertOnTerm()
+"   if index(term_list(),bufnr('%')) != -1
+"     normal i
+"     normal :
+"   endif
+" endfunction
 
-function ForceQuitIfTerm()
-  if index(term_list(),bufnr('%')) != -1
-    quit!
-  else
-    quit
-  endif
-endfunction
+" function ForceQuitIfTerm()
+"   if index(term_list(),bufnr('%')) != -1
+"     quit!
+"   else
+"     quit
+"   endif
+" endfunction
 
 :command Term term ++curwin
 :command NTerm tabnew | Term
 :command D bp|bd #
 
-" remaps
-"noremap <c-n> :NERDTreeToggle<CR>
-"
-"" un-mapping NERDTree maps that conflict
-"let g:NERDTreeMapJumpNextSibling="☻"
-"let g:NERDTreeMapJumpPrevSibling="☺"
-
-" leader
-:nnoremap <leader> <space>
+"""""" REMAPS """"""
 " movement
-noremap <c-e> <esc>$
-noremap <c-a> <esc>0
-vnoremap <c-e> <esc>$
-vnoremap <c-a> <esc>0
-inoremap <c-e> <esc><S-a>
-inoremap <c-a> <esc><S-i>
+inoremap <c-e> <c-o>$
+inoremap <c-a> <c-o>0
+noremap <c-e> $
+noremap <c-a> 0
+" vnoremap <c-e> $
+" vnoremap <c-a> 0
 nnoremap <c-k> 10k
 nnoremap <c-j> 10j
 nnoremap <c-h> <s-h>
@@ -116,18 +102,23 @@ tnoremap <c-t> <c-\><c-n>:tabnew<CR>
 " window remaps
 nnoremap <c-g> :vsplit<CR>
 nnoremap <c-b> :split<CR>
-" nnoremap <c-k> <c-W>k<CR>
-" nnoremap <c-j> <c-W>j<CR>
-" inoremap <c-j> <c-c><c-W>k
-" inoremap <c-k> <c-c><c-W>j
 nnoremap <s-h> <c-W>h<CR>k
 nnoremap <s-l> <c-W>l<CR>k
 " buffer cycling
 nnoremap <c-i> :bprev<CR>
 nnoremap <c-o> :bnext<CR>
-" visual
-vnoremap <c-a> 0
-vnoremap <c-e> $
+
+" local leader mappings
+let maplocalleader="\<space>"
+
+function! WrapCout()
+  :exe "norm Istd::cout << "
+  :exe "norm A << std::endl;"
+endfunction
+
+" :autocmd FileType cpp nnoremap <buffer> <localleader>oo Istd::cout << <esc>A << std::endl;<esc>
+:autocmd FileType cpp nnoremap <buffer> <localleader>oo :call WrapCout()<CR>
+:autocmd FileType cpp vnoremap <silent> <buffer> <localleader>o :call WrapCout()<CR>
 
 " save current session
 function s:SaveCurSess()
@@ -198,23 +189,3 @@ function! RejectQuit(writeFile)
         echo("Session is locked; cannot quit. Run :Unlock to enable quitting.")
     endif
 endfu
-
-""""""""""""""""""""""""""""""""""""""""
-
-"" syntastic settings
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-""
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-"let g:syntastic_check_on_w = 1
-"let g:syntastic_cpp_remove_include_errors = 0
-""let g:syntastic_toggle_mode = {"mode": "passive", "active_filetypes": []}
-"""let g:syntastic_quiet_messages = {"type": "syntax"}
-"let g:syntastic_cpp_cpplint_exec = "cpplint"
-"let g:syntastic_debug = 0
-"let g:syntastic_cpp_compiler = "g++"
-"let g:syntastic_cpp_compiler_options="-std=c++14 -stdlib=libc++"
