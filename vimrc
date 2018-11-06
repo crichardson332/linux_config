@@ -17,6 +17,19 @@ syntax enable
 autocmd bufread *.launch exe "setf xml"
 ":set nohlsearch
 
+" load vim-speeddating if in orgmode
+au BufRead,BufNewFile *.org set filetype=org
+" autocmd FileType org packadd vim-speeddating
+" autocmd FileType org packadd vim-orgmode
+" autocmd FileType org edit!
+
+autocmd BufReadPre,BufNewFile *.org packadd vim-repeat
+autocmd BufReadPre,BufNewFile *.org packadd calendar.vim
+autocmd BufReadPre,BufNewFile *.org packadd SyntaxRange
+autocmd BufReadPre,BufNewFile *.org packadd utl.vim
+autocmd BufReadPre,BufNewFile *.org packadd vim-speeddating
+autocmd BufReadPre,BufNewFile *.org packadd vim-orgmode
+
 " Functions to see a diff from the last save inside of vim
 :command Diff w !diff % -
 :command Tkdiff w !tkdiff % /dev/stdin
@@ -73,27 +86,31 @@ nnoremap <CR> :noh<CR><CR>
 :command D bp|bd #
 
 """""" REMAPS """"""
-" movement
-inoremap <c-e> <c-o>$
-inoremap <c-a> <c-o>0
-noremap <c-e> $
-noremap <c-a> 0
-" vnoremap <c-e> $
-" vnoremap <c-a> 0
+" move cursor to beginning/end of line
+inoremap <c-e> <End>
+inoremap <c-a> <Home>
+nnoremap <c-e> <End>
+nnoremap <c-a> <Home>
+vnoremap <c-e> <End>
+vnoremap <c-a> <Home>
+" quick jumps
 nnoremap <c-k> 10k
 nnoremap <c-j> 10j
 nnoremap <c-h> <s-h>
 nnoremap <c-l> <s-l>
-nnoremap <c-n> <s-m>
 vnoremap <c-k> 10k
 vnoremap <c-j> 10j
 vnoremap <c-h> <s-h>
 vnoremap <c-l> <s-l>
-vnoremap <c-n> <s-m>
 inoremap <c-k> <c-c>10ka
 inoremap <c-j> <c-c>10ja
 inoremap <c-h> <c-c><s-h>i
 inoremap <c-l> <c-c><s-l>i
+" cursor to middle
+nnoremap <c-n> <s-m>
+vnoremap <c-n> <s-m>
+" increment operator
+nnoremap <c-f> <c-a>
 " remap ctrl-c to esc to get abbreviation finishing functionality
 inoremap <c-c> <esc>
 " tab remaps
