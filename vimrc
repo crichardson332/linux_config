@@ -13,9 +13,12 @@ syntax enable
 :set nostartofline
 :set clipboard=unnamed
 :set backspace=indent,eol,start
+:set hlsearch
 " Set xml syntax highlighting for ros
 autocmd bufread *.launch exe "setf xml"
 ":set nohlsearch
+set background=dark
+" set background=light
 
 " load vim-speeddating if in orgmode
 au BufRead,BufNewFile *.org set filetype=org
@@ -35,13 +38,12 @@ autocmd BufReadPre,BufNewFile *.org packadd vim-orgmode
 :command Tkdiff w !tkdiff % /dev/stdin
 :command Fold setlocal foldmethod=syntax
 :command Sign %s/@author.*/@author Christopher Richardson <christopher.richardson@gtri.gatech.edu>
-set background=dark
-"set background=light
 colorscheme solarized
 
 " vim-airline settings
 let g:airline_theme = 'solarized'
 let g:airline_solarized_bg='dark'
+" let g:airline_solarized_bg='light'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_section_b = ''

@@ -20,9 +20,16 @@ elif [[ $OSTYPE == "darwin"* ]]; then
   alias grep='ggrep --color=auto'
   alias dircolors='gdircolors'
   alias rlg='source ~/.bash_profile'
+  function focus_follows_mouse() {
+    defaults write com.apple.Terminal FocusFollowsMouse -string YES
+  }
 fi
 
 # cross platform config
+
+# python
+export PYTHONPATH="/usr/local/Cellar/python/3.7.0/bin/python3:$PYTHONPATH"
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
 # dircolors for solarized
 eval "$(dircolors "$HOME/.dircolors/dircolors-solarized/dircolors.ansi-dark")"
@@ -44,13 +51,17 @@ alias gitb='git branch -vv'
 alias sshvm='ssh -p 3022 chris@127.0.0.1'
 alias sshvm3='ssh -p 2223 chris@127.0.0.1'
 alias sshvmd='ssh -p 2224 chris@127.0.0.1'
-alias sshlnx='ssh crichardson@192.168.90.201'
+alias sshlnx='ssh crichardson@192.168.90.207'
 
 # git
 git config --global user.name "Christopher Richardson"
 git config --global user.email christopher.richardson@gtri.gatech.edu
 git config --global alias.nicelog 'log --decorate --oneline --graph'
 git config --global push.default simple
+# git aliases
+git config --global alias.suri 'submodule update --recursive --init'
+git config --global alias.surm 'submodule update --recursive --remote'
+git config --global alias.surim 'submodule update --recursive --init --remote'
 
 # Editor
 export VISUAL=vim
@@ -121,26 +132,6 @@ Usage:
   else
     find . -type f -not -path '*/\.*' -exec sed -i "s/$1/$2/g" {} \;
   fi
-}
-
-# FIXME because I have to do this :/
-function bdx () {
-  last3dir=$(basename "$(dirname "$(dirname "$PWD")")")/$(basename "$(dirname "$PWD")")/$(basename "$PWD")
-  if [ "$last3dir" == "gtri-bees/srcx/build" ]; then
-    cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX=~/gtri-uav-install
-  else
-    echo "Must be in gtri-bees/srcx/build to run this command!"
-  fi
-}
-
-function add_dotlocal_to_ldpath() {
-  export LD_LIBRARY_PATH="/home/$USER/.local/lib:$LD_LIBRARY_PATH"
-  echo "LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
-}
-
-function add_gtri-uav-install_to_ldpath() {
-  export LD_LIBRARY_PATH="/home/$USER/gtri-uav-install/lib:$LD_LIBRARY_PATH"
-  echo "LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
 }
 
 function purge_scrimmage_paths() {
