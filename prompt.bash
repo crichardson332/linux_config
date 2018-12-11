@@ -35,7 +35,7 @@ if tput setaf 1 &> /dev/null; then
       BLUE=$(tput setaf 4)
       CYAN=$(tput setaf 6)
       GREEN=$(tput setaf 2)
-    fi  
+    fi
     BOLD=$(tput bold)
     RESET=$(tput sgr0)
 else
@@ -50,5 +50,24 @@ else
     RESET="\e[m"
 fi
 
-export PS1="\n\[$RED\][\[$RESET\]\t\[$RED\]]\[$RESET\] \w/\n\[$CYAN\]\u\[$RESET\]@\[$YELLOW\]\h\[$RESET\]\\$ "
+# git branch
+parse_git_branch() {
+  git branch -vv 2> /dev/null | sed -e '/^[^*]/d' -e 's/\* \([^ ]\+\) \+\([^ ]\+\) \([^ ]\+\).*/\1 \2 \3/'
+}
 
+build_prompt() {
+  PS1="\n"
+  git_string=$(parse_git_branch)
+  git_branch=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ ]\+\)[]]/\1/')
+  git_hash=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ ]\+\)[]]/\2/')
+  git_remote=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ ]\+\)[]]/\3/')
+  if [[ $git_branch ]]; then
+    PS1+="\[$YELLOW\]\$git_branch\[$RESET\] $git_hash [\[$BLUE\]$git_remote\[$RESET\]]\n"
+  fi
+  PS1+="\[$RED\][\[$RESET\]\t\[$RED\]]\[$RESET\] \w/\n\[$CYAN\]\u\[$RESET\]@\[$YELLOW\]\h\[$RESET\]\\$ "
+}
+
+GITSTRING=""
+
+# new method
+PROMPT_COMMAND=build_prompt
