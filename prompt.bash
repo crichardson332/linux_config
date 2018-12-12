@@ -53,7 +53,7 @@ fi
 
 # git branch
 parse_git_branch() {
-  git branch -vv 2> /dev/null | sed -e '/^[^*]/d' -e 's/\* \([^ ]\+\) \+\([^ ]\+\) \([^ ]\+\).*/\1 \2 \3/'
+  git branch -vv 2> /dev/null | sed -e '/^[^*]/d' -e 's/\* \([^ ]\+\) \+\([^ ]\+\) \(.*\]\).*/\1 \2 \3/'
 }
 parse_git_repo() {
   TOPLEVEL=$(git rev-parse --show-toplevel 2> /dev/null)
@@ -67,9 +67,12 @@ parse_git_repo() {
 build_prompt() {
   PS1="\n"
   git_string=$(parse_git_branch)
-  git_branch=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ ]\+\)[]]/\1/')
-  git_hash=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ ]\+\)[]]/\2/')
-  git_remote=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ ]\+\)[]]/\3/')
+  # git_branch=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ ]\+\)[]]/\1/')
+  # git_hash=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ ]\+\)[]]/\2/')
+  git_branch=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ :]\+\)\(:*.*\)[]]/\1/')
+  git_hash=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ :]\+\)\(:*.*\)[]]/\2/')
+  git_remote=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ :]\+\)\(:*.*\)[]]/\3/')
+  git_remote_msg=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ :]\+\)\(:*.*\)[]]/\4/')
   git_repo=$(parse_git_repo)
 
   # truncate
@@ -78,7 +81,7 @@ build_prompt() {
 
   # construct prompt
   if [[ $git_branch ]]; then
-    PS1+="${git_repo} \[$YELLOW\]\$git_branch\[$RESET\] $git_hash [\[$BLUE\]$git_remote\[$RESET\]]\n"
+    PS1+="${git_repo} \[$YELLOW\]\${git_branch}\[$RESET\] $git_hash [\[$BLUE\]$git_remote\[$RESET\]${git_remote_msg}]\n"
   fi
   PS1+="\[$RED\][\[$RESET\]\t\[$RED\]]\[$RESET\] \w/\n\[$CYAN\]\u\[$RESET\]@\[$YELLOW\]\h\[$RESET\]\\$ "
 }
