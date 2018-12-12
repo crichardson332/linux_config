@@ -15,7 +15,8 @@ if tput setaf 1 &> /dev/null; then
       RED=$(tput setaf 160)
       MAGENTA=$(tput setaf 125)
       VIOLET=$(tput setaf 61)
-      BLUE=$(tput setaf 33)
+      # BLUE=$(tput setaf 33)
+      BLUE=$(tput setaf 4)
       CYAN=$(tput setaf 37)
       GREEN=$(tput setaf 64)
     else
@@ -54,6 +55,14 @@ fi
 parse_git_branch() {
   git branch -vv 2> /dev/null | sed -e '/^[^*]/d' -e 's/\* \([^ ]\+\) \+\([^ ]\+\) \([^ ]\+\).*/\1 \2 \3/'
 }
+parse_git_repo() {
+  TOPLEVEL=$(git rev-parse --show-toplevel 2> /dev/null)
+  if [[ $TOPLEVEL ]]; then
+    echo "$(basename $TOPLEVEL) ->"
+  else
+    echo ""
+  fi
+}
 
 build_prompt() {
   PS1="\n"
@@ -61,8 +70,15 @@ build_prompt() {
   git_branch=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ ]\+\)[]]/\1/')
   git_hash=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ ]\+\)[]]/\2/')
   git_remote=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ ]\+\)[]]/\3/')
+  git_repo=$(parse_git_repo)
+
+  # truncate
+  git_branch=$(echo ${git_branch} | sed 's/\([^-_]*\)\([-_]\)\([^-_]*\)\([-_]\)\([^-_]*\)[-_].*/\1\2\3\4\5/')
+  git_remote=$(echo ${git_remote} | sed 's/\([^-_]*\)\([-_]\)\([^-_]*\)\([-_]\)\([^-_]*\)[-_].*/\1\2\3\4\5/')
+
+  # construct prompt
   if [[ $git_branch ]]; then
-    PS1+="\[$YELLOW\]\$git_branch\[$RESET\] $git_hash [\[$BLUE\]$git_remote\[$RESET\]]\n"
+    PS1+="${git_repo} \[$YELLOW\]\$git_branch\[$RESET\] $git_hash [\[$BLUE\]$git_remote\[$RESET\]]\n"
   fi
   PS1+="\[$RED\][\[$RESET\]\t\[$RED\]]\[$RESET\] \w/\n\[$CYAN\]\u\[$RESET\]@\[$YELLOW\]\h\[$RESET\]\\$ "
 }
