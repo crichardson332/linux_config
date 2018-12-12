@@ -18,7 +18,8 @@ if tput setaf 1 &> /dev/null; then
       # BLUE=$(tput setaf 33)
       BLUE=$(tput setaf 4)
       CYAN=$(tput setaf 37)
-      GREEN=$(tput setaf 64)
+      # GREEN=$(tput setaf 64)
+      GREEN=$(tput setaf 2)
     else
       BASE03=$(tput setaf 8)
       BASE02=$(tput setaf 0)
@@ -67,8 +68,6 @@ parse_git_repo() {
 build_prompt() {
   PS1="\n"
   git_string=$(parse_git_branch)
-  # git_branch=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ ]\+\)[]]/\1/')
-  # git_hash=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ ]\+\)[]]/\2/')
   git_branch=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ :]\+\)\(:*.*\)[]]/\1/')
   git_hash=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ :]\+\)\(:*.*\)[]]/\2/')
   git_remote=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ :]\+\)\(:*.*\)[]]/\3/')
@@ -81,7 +80,7 @@ build_prompt() {
 
   # construct prompt
   if [[ $git_branch ]]; then
-    PS1+="${git_repo} \[$YELLOW\]\${git_branch}\[$RESET\] $git_hash [\[$BLUE\]$git_remote\[$RESET\]${git_remote_msg}]\n"
+    PS1+="${git_repo} \[$GREEN\]\${git_branch}\[$RESET\] $git_hash [\[$BLUE\]$git_remote\[$RESET\]${git_remote_msg}]\n"
   fi
   PS1+="\[$RED\][\[$RESET\]\t\[$RED\]]\[$RESET\] \w/\n\[$CYAN\]\u\[$RESET\]@\[$YELLOW\]\h\[$RESET\]\\$ "
 }
