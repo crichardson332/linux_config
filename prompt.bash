@@ -67,21 +67,34 @@ parse_git_repo() {
 
 build_prompt() {
   PS1="\n"
-  git_string=$(parse_git_branch)
-  git_branch=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ :]\+\)\(:*.*\)[]]/\1/')
-  git_hash=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ :]\+\)\(:*.*\)[]]/\2/')
-  git_remote=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ :]\+\)\(:*.*\)[]]/\3/')
-  git_remote_msg=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ :]\+\)\(:*.*\)[]]/\4/')
-  git_repo=$(parse_git_repo)
+  # git_string=$(parse_git_branch)
+  # git_hash=""
+  # git_remote=""
+  # git_remote_msg=""
+  # DETACHED_HEAD=false
+  # if [[ ${git_string} =~ .*HEAD\ detached.* ]]; then
+  #   DETACHED_HEAD=true
+  #   git_branch=$(echo ${git_string} | sed 's/.*\((HEAD detached.*)\).*/\1/')
+  # else
+  #   git_branch=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ :]\+\)\(:*.*\)[]]/\1/')
+  #   git_hash=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ :]\+\)\(:*.*\)[]]/\2/')
+  #   git_remote=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ :]\+\)\(:*.*\)[]]/\3/')
+  #   git_remote_msg=$(echo ${git_string} | sed 's/\([^ ]\+\) \([^ ]\+\) [[]\([^ :]\+\)\(:*.*\)[]]/\4/')
+  # fi
+  # git_repo=$(parse_git_repo)
 
-  # truncate
-  git_branch=$(echo ${git_branch} | sed 's/\([^-_]*\)\([-_]\)\([^-_]*\)\([-_]\)\([^-_]*\)[-_].*/\1\2\3\4\5/')
-  git_remote=$(echo ${git_remote} | sed 's/\([^-_]*\)\([-_]\)\([^-_]*\)\([-_]\)\([^-_]*\)[-_].*/\1\2\3\4\5/')
+  # # truncate
+  # git_branch=$(echo ${git_branch} | sed 's/\([^-_]*\)\([-_]\)\([^-_]*\)\([-_]\)\([^-_]*\)[-_].*/\1\2\3\4\5/')
+  # git_remote=$(echo ${git_remote} | sed 's/\([^-_]*\)\([-_]\)\([^-_]*\)\([-_]\)\([^-_]*\)[-_].*/\1\2\3\4\5/')
 
-  # construct prompt
-  if [[ $git_branch ]]; then
-    PS1+="${git_repo} \[$GREEN\]\${git_branch}\[$RESET\] $git_hash [\[$BLUE\]$git_remote\[$RESET\]${git_remote_msg}]\n"
-  fi
+  # # construct prompt
+  # if [[ $git_branch ]]; then
+  #   if [[ $DETACHED_HEAD == true ]]; then
+  #     PS1+="${git_repo} \[$GREEN\]\${git_branch}\[$RESET\]\n"
+  #   else
+  #     PS1+="${git_repo} \[$GREEN\]\${git_branch}\[$RESET\] $git_hash [\[$BLUE\]$git_remote\[$RESET\]${git_remote_msg}]\n"
+  #   fi
+  # fi
   PS1+="\[$RED\][\[$RESET\]\t\[$RED\]]\[$RESET\] \w/\n\[$CYAN\]\u\[$RESET\]@\[$YELLOW\]\h\[$RESET\]\\$ "
 }
 
