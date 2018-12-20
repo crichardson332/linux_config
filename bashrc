@@ -48,9 +48,8 @@ alias bdl='./build_scripts/lite_build'
 alias gitb='git branch -vv'
 
 # ssh
-alias sshvm='ssh -p 3022 chris@127.0.0.1'
-alias sshvm3='ssh -p 2223 chris@127.0.0.1'
-alias sshvmd='ssh -p 2224 chris@127.0.0.1'
+alias sshvm='ssh -p 2224 chris@127.0.0.1'
+alias sshvm64='ssh -p 2223 chris@127.0.0.1'
 alias sshlnx='ssh crichardson@192.168.90.207'
 
 # git
