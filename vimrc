@@ -38,10 +38,13 @@ autocmd BufReadPre,BufNewFile *.org packadd vim-orgmode
 :command Tkdiff w !tkdiff % /dev/stdin
 :command Fold setlocal foldmethod=syntax
 :command Sign %s/@author.*/@author Christopher Richardson <christopher.richardson@gtri.gatech.edu>
-colorscheme solarized
+" :command Sign %s/\(.*\)author\(.*\)$/\1author\2 Christopher Richardson <christopher.richardson@gtri.gatech.edu>
+" colorscheme solarized
+colorscheme gruvbox
 
 " vim-airline settings
-let g:airline_theme = 'solarized'
+" let g:airline_theme = 'solarized'
+let g:airline_theme = 'gruvbox'
 let g:airline_solarized_bg='dark'
 " let g:airline_solarized_bg='light'
 let g:airline#extensions#tabline#enabled = 1
@@ -65,6 +68,8 @@ map <leader>al :ALEToggle<CR>
 nnoremap <CR> :noh<CR><CR>
 
 " ctrlp
+let g:ctrlp_working_path_mode = 'r'
+nnoremap <localleader>. :CtrlPTag<cr>
 "set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " " term functions
@@ -116,8 +121,8 @@ nnoremap <c-f> <c-a>
 " remap ctrl-c to esc to get abbreviation finishing functionality
 inoremap <c-c> <esc>
 " tab remaps
-nnoremap <c-t> :tabnew<CR>
-tnoremap <c-t> <c-\><c-n>:tabnew<CR>
+" nnoremap <c-t> :tabnew<CR>
+" tnoremap <c-t> <c-\><c-n>:tabnew<CR>
 " window remaps
 nnoremap <c-g> :vsplit<CR>
 nnoremap <c-b> :split<CR>

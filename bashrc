@@ -49,7 +49,7 @@ alias gitb='git branch -vv'
 
 # ssh
 alias sshvm='ssh -p 2224 chris@127.0.0.1'
-alias sshvm64='ssh -p 2223 chris@127.0.0.1'
+alias sshvmd='ssh -p 2226 chris@127.0.0.1'
 alias sshlnx='ssh crichardson@192.168.90.207'
 
 # git
@@ -62,6 +62,9 @@ git config --global alias.sur 'submodule update --recursive'
 git config --global alias.suri 'submodule update --recursive --init'
 git config --global alias.surm 'submodule update --recursive --remote'
 git config --global alias.surim 'submodule update --recursive --init --remote'
+# ctags
+git config --global init.templatedir
+git config --global alias.ctags '!.git/hooks/ctags'
 
 # Editor
 export VISUAL=vim

@@ -10,7 +10,8 @@ if [[ "$OSTYPE" == "darwin"* ]] ; then
       echo "Installing Homebrew."
       ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
-  HOMEBREW_NO_AUTO_UPDATE=1 brew install gtest git python python3 vim safe-rm tmux grep coreutils trash ninja tree clang-format gnu-sed --with-default-names
+  # HOMEBREW_NO_AUTO_UPDATE=1 brew install gtest git python python3 vim safe-rm tmux grep coreutils trash ninja tree clang-format gnu-sed ctags --with-default-names
+  brew install gtest git python python3 vim safe-rm tmux grep coreutils trash ninja tree clang-format gnu-sed ctags --with-default-names
   touch "$HOME/.bash_profile"
 
 elif [[ "$OSTYPE" == "linux-gnu" ]] ; then
@@ -26,7 +27,7 @@ elif [[ "$OSTYPE" == "linux-gnu" ]] ; then
     # install packages, including vim8 from ppa
     sudo add-apt-repository ppa:jonathonf/vim
     sudo apt-get update
-    sudo apt-get install build-essential libgtest-dev curl terminator git python python3 python3-pip vim safe-rm openssh-server tmux vim trash-cli tree
+    sudo apt-get install build-essential libgtest-dev curl terminator git python python3 python3-pip vim safe-rm openssh-server tmux vim trash-cli tree ctags
 
   # OpenSuse, Mandriva, Fedora, CentOs, ecc. (with rpm)
   elif command -v rpm &> /dev/null; then
@@ -49,13 +50,13 @@ if [ ! -f "$HOME/.vim/autoload/pathogen.vim" ]; then
   curl -LSso "$HOME/.vim/autoload/pathogen.vim" https://tpo.pe/pathogen.vim
 fi
 
-# create folders if they dont exist
-if [ ! -d "$HOME/.vim" ]; then
-  mkdir -p "$HOME/.vim"
-fi
-if [ ! -d "$HOME/.dircolors" ]; then
-  mkdir -p "$HOME/.dircolors"
-fi
+# ctags vim
+mkdir -p "$HOME/.git_template/hooks"
+cp ./hooks/* "$HOME/.git_template/hooks"
+
+# create config folders
+mkdir -p "$HOME/.vim"
+mkdir -p "$HOME/.dircolors"
 
 # run python setup
 pip3 install gitpython
