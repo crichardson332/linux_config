@@ -56,6 +56,7 @@ alias sshlnx='ssh crichardson@192.168.90.207'
 git config --global user.name "Christopher Richardson"
 git config --global user.email christopher.richardson@gtri.gatech.edu
 git config --global alias.nicelog 'log --decorate --oneline --graph'
+git config --global alias.biglog 'log --decorate --graph'
 git config --global push.default simple
 # git aliases
 git config --global alias.su 'submodule update'
