@@ -134,8 +134,9 @@ nnoremap <c-o> :bnext<CR>
 
 " local leader mappings
 let maplocalleader="\<space>"
+nnoremap <localleader>t :rightb vert terminal<cr>
 
-function! WrapCout()
+function WrapCout()
   :exe "norm Istd::cout << "
   :exe "norm A << std::endl;"
 endfunction
@@ -145,7 +146,7 @@ endfunction
 :autocmd FileType cpp vnoremap <silent> <buffer> <localleader>o :call WrapCout()<CR>
 
 " save current session
-function s:SaveCurSess()
+function! s:SaveCurSess()
     call mkdir(expand("~/.vim/sessions"), "p")
     mks! ~/.vim/sessions/last_sess.vim
 endfunction
@@ -159,7 +160,7 @@ autocmd BufWritePre *.* :call s:SaveCurSess()
 " fix issue with window scrolling during buffer switch
 """"""""""""""""""""""""""""""""""""""""
 " Save current view settings on a per-window, per-buffer basis.
-function! AutoSaveWinView()
+function AutoSaveWinView()
     if !exists("w:SavedBufView")
         let w:SavedBufView = {}
     endif
@@ -167,7 +168,7 @@ function! AutoSaveWinView()
 endfunction
 
 " Restore current view settings.
-function! AutoRestoreWinView()
+function AutoRestoreWinView()
     let buf = bufnr("%")
     if exists("w:SavedBufView") && has_key(w:SavedBufView, buf)
         let v = winsaveview()
@@ -186,12 +187,12 @@ if v:version >= 700
 endif
 
 " Give user ability to lock session and prevent accidental quitting
-function! Lock()
+function Lock()
   cnoremap <silent> q<CR> :call RejectQuit(0)<CR>
   cnoremap <silent> wq<CR> :call RejectQuit(1)<CR>
     echo("Session locked.")
 endfu
-function! Unlock()
+function Unlock()
     cunmap q<CR>
     echo("Session unlocked.")
 endfu
@@ -200,7 +201,7 @@ endfu
 :command Unlock :call Unlock()
 
 " reject quit when locked
-function! RejectQuit(writeFile)
+function RejectQuit(writeFile)
     if (a:writeFile)
         if (expand('%:t')=="")
             echo "Can't save a file with no name."
@@ -212,4 +213,45 @@ function! RejectQuit(writeFile)
     if (winnr('$')==1 && tabpagenr('$')==1)
         echo("Session is locked; cannot quit. Run :Unlock to enable quitting.")
     endif
+endfu
+
+function CMakeTags()
+  let l:build_dir = fnamemodify(finddir('build', system('git rev-parse --show-toplevel')[:-2], 1), ':p')
+  let l:cmake_cache = findfile('CMakeCache.txt', build_dir, 1)
+  call ParseCMakeCache(cmake_cache)
+endfu
+
+function ParseCMakeCache(cmake_cache)
+  if !filereadable(a:cmake_cache)
+    echo 'Error: cannot process CMakeCache.txt'
+    return
+  endif
+  let l:lines = readfile(a:cmake_cache)
+  for line in l:lines
+    call ParseCMakeCacheLine(line)
+  endfor
+endfu
+
+function ParseCMakeCacheLine(line)
+  if type(a:line) != type('')
+    echo 'Error: failed to parse CMakeCache.txt; got non-string line'
+    return
+  endif
+
+  " return if the line is empty or a comment
+  let l:line_len = strlen(a:line)
+  if l:line_len == 0 || a:line[0] == ';' || a:line[0] == '#' || a:line[0:1] == '//'
+    return
+  endif
+
+  " add tag if its a path with a build directory
+  if match(a:line, '_DIR:PATH=') != -1 && match(a:line, 'build') != -1
+    let l:build_pos = match(a:line, '/build')
+    let l:eq_pos = match(a:line, '=')
+    let l:build_dir = strpart(a:line, l:eq_pos+1)
+    let l:parts = split(l:build_dir, '/build')
+    let l:build_dir_parent = l:parts[0]
+    let $tag_file = join([l:build_dir_parent, '.git/tags'], '/')
+    :set tags+=$tag_file
+  endif
 endfu
