@@ -72,6 +72,16 @@ def install_terminator():
         return
     pass
 
+def install_i3():
+    if platform == "linux" or platform == "linux2":
+        if not os.path.exists(user_home + '/.config/i3'):
+            os.makedirs(user_home + '/.config/i3')
+        shutil.copy(script_dir + '/i3_config', user_home + '/.config/i3/config')
+    elif platform == "darwin":
+        #print("macOS detected: not installing i3.")
+        pass
+    return
+
 def main():
     # cant run as root
     env = os.environ.copy()
@@ -96,6 +106,8 @@ def main():
                         help='Install bashrc and prompt')
     parser.add_argument('-t','--terminator', action='store_true', default=False,
                         help='Install terminator config')
+    parser.add_argument('-i','--i3', action='store_true', default=False,
+                        help='Install i3 config')
     args = parser.parse_args()
 
     if args.vim or args.all:
@@ -104,6 +116,8 @@ def main():
         install_bashrc()
     elif args.terminator or args.all:
         install_terminator()
+    elif args.i3 or args.all:
+        install_i3()
     else:
         print("No install options chosen. Doing nothing. See --help for options.")
 
