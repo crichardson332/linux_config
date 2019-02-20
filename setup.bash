@@ -27,7 +27,7 @@ elif [[ "$OSTYPE" == "linux-gnu" ]] ; then
     # install packages, including vim8 from ppa
     sudo add-apt-repository ppa:jonathonf/vim
     sudo apt-get update
-    sudo apt-get install build-essential libgtest-dev curl terminator git python python3 python3-pip vim safe-rm openssh-server tmux vim trash-cli tree ctags
+    sudo apt-get install build-essential libgtest-dev curl htop terminator git cmake ninja python python3 python3-pip vim safe-rm openssh-server tmux vim trash-cli tree ctags i3 numlockx scrot nitrogen
 
   # OpenSuse, Mandriva, Fedora, CentOs, ecc. (with rpm)
   elif command -v rpm &> /dev/null; then

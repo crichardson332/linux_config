@@ -1,0 +1,6 @@
+#!/bin/bash
+
+scrot /tmp/screenshot.png
+# convert /tmp/screenshot.png -resize 5% -filter point -resize 2000% /tmp/screenshotblur.png
+convert /tmp/screenshot.png -spread 3 /tmp/screenshotblur.png
+i3lock -i /tmp/screenshotblur.png -n

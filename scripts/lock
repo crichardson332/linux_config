@@ -1,8 +1,0 @@
-#!/bin/bash
-
-scrot /tmp/screenshot.png
-# convert /tmp/screenshot.png -blur 0x5 /tmp/screenshotblur.png
-# convert /tmp/screenshot.png -filter Gaussian -resize 20% -define filter:sigma=2.5 -resize 500% /tmp/screenshotblur.png
-convert /tmp/screenshot.png -resize 5% -filter point -resize 2000% /tmp/screenshotblur.png
-i3lock -i /tmp/screenshotblur.png -n
-xset r rate 200 40
