@@ -51,6 +51,8 @@ def install_vim():
         os.system("git clone https://github.com/tpope/vim-vinegar $HOME/.vim/pack/crich/start/vim-vinegar")
     if not os.path.exists(user_home + '/.vim/pack/crich/start/utl.vim'):
         os.system("git clone https://github.com/vim-scripts/utl.vim $HOME/.vim/pack/crich/start/utl.vim")
+    if not os.path.exists(user_home + '/.vim/pack/crich/start/gruvbox'):
+        os.system("git clone https://github.com/morhetz/gruvbox.git $HOME/.vim/pack/crich/start/gruvbox")
 
     shutil.copy(script_dir + '/vimrc', user_home + '/.vimrc')
 
