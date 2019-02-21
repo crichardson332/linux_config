@@ -14,7 +14,11 @@ exec --no-startup-id nitrogen --restore
 exec --no-startup-id xautolock -time 10 -locker lock
 exec --no-startup-id nm-applet
 exec --no-startup-id udiskie --tray &
+
+# xset
 exec_always --no-startup-id xset r rate 200 30
+exec_always --no-startup-id xset m 3/2 4
+exec_always --no-startup-id numlockx off
 
 set $mod Mod1
 
@@ -94,7 +98,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-# bindsym $mod+h split h
+bindsym $mod+b split h
 
 # split in vertical orientation
 bindsym $mod+v split v
