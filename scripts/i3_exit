@@ -1,7 +1,7 @@
 #!/bin/sh
 
 lock() {
-    i3lock_blur
+    i3_lock_blur
 }
 
 case "$1" in
@@ -12,7 +12,8 @@ case "$1" in
         i3-msg exit
         ;;
     suspend)
-        lock && systemctl suspend
+        # lock && systemctl suspend
+        systemctl suspend
         ;;
     hibernate)
         lock && systemctl hibernate
