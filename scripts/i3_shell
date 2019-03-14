@@ -1,4 +1,4 @@
 #!/bin/bash
 WHEREAMI=$(cat /tmp/whereami)
-i3-sensible-terminal --working-directory="${WHEREAMI}"
-# kitty --directory="${WHEREAMI}"
+# i3-sensible-terminal --working-directory="${WHEREAMI}"
+kitty --single-instance --directory="${WHEREAMI}"

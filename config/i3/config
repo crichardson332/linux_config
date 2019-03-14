@@ -83,8 +83,8 @@ floating_modifier $mod
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-# bindsym $mod+Return exec --no-startup-id i3_shell
-bindsym $mod+Return exec --no-startup-id kitty --single-instance
+bindsym $mod+Return exec --no-startup-id i3_shell
+# bindsym $mod+Return exec --no-startup-id kitty --single-instance
 
 # kill focused window
 bindsym $mod+Shift+q kill
