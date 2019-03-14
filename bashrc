@@ -32,7 +32,7 @@ export PYTHONPATH="/usr/local/Cellar/python/3.7.0/bin/python3:$PYTHONPATH"
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
 # dircolors for solarized
-eval "$(dircolors "$HOME/.dircolors/dircolors-solarized/dircolors.ansi-dark")"
+# eval "$(dircolors "$HOME/.dircolors/dircolors-solarized/dircolors.ansi-dark")"
 
 # cross platform aliases
 alias rm='trash'
@@ -166,3 +166,35 @@ if [ -f /opt/ros/kinetic/setup.bash ]; then
   # shellcheck source=/dev/null
   source /opt/ros/kinetic/setup.bash
 fi
+
+# GTRI
+# SSH_ENV=$HOME/.ssh/environment
+# function start_agent {
+#     echo "Initializing new SSH agent..."
+#     /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+#     echo succeeded
+#     chmod 600 "${SSH_ENV}"
+#     . "${SSH_ENV}" > /dev/null
+#     /usr/bin/ssh-add
+# }
+# if [ -f "${SSH_ENV}" ]; then
+#     . "${SSH_ENV}" > /dev/null
+#     ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+#         start_agent;
+#     }
+# else
+#     start_agent;
+# fi
+
+# docker exec -it uav_i386-bees_integration_1 /bin/bash
+
+# tab completion
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
