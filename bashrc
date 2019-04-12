@@ -33,10 +33,11 @@ export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
 # dircolors for solarized
 # eval "$(dircolors "$HOME/.dircolors/dircolors-solarized/dircolors.ansi-dark")"
+eval "$(dircolors "$HOME/.dircolors/dircolors-gruvbox/gruvbox-dark.dircolors")"
 
 # cross platform aliases
-alias rm='trash'
-alias purge='/bin/rm'
+alias tr='trash'
+# alias purge='/bin/rm'
 alias ll='ls -lh'
 alias l='ls -lh'
 alias lll='ls -lh'
@@ -46,11 +47,15 @@ alias bd='./build_scripts/build'
 alias cld='cdl'
 alias bdl='./build_scripts/lite_build'
 alias gitb='git branch -vv'
+alias vf='vim $(fzf)'
 
 # ssh
 alias sshvm='ssh -p 2224 chris@127.0.0.1'
 alias sshvmd='ssh -p 2226 chris@127.0.0.1'
 alias sshlnx='ssh crichardson@192.168.90.207'
+
+# caps lock nonsense
+alias CAPSLOCK='xdotool key Caps_Lock'
 
 # git
 git config --global user.name "Christopher Richardson"

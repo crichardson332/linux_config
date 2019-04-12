@@ -20,6 +20,9 @@ autocmd bufread *.launch exe "setf xml"
 set background=dark
 " set background=light
 
+" packloadall
+silent! helptags ALL
+
 " load vim-speeddating if in orgmode
 au BufRead,BufNewFile *.org set filetype=org
 " autocmd FileType org packadd vim-speeddating
@@ -60,6 +63,7 @@ let g:ale_fix_on_save = 1
 let g:ale_linters = {
   \ 'cpp': ['cppcheck'],
   \}
+" 'cpp': ['ccls'],
 let g:ale_lint_on_enter = 1
 
 map <leader>al :ALEToggle<CR>
@@ -69,7 +73,7 @@ nnoremap <CR> :noh<CR><CR>
 
 " ctrlp
 let g:ctrlp_working_path_mode = 'r'
-nnoremap <localleader>. :CtrlPTag<cr>
+nnoremap <localleader>p :CtrlPTag<cr>
 "set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " " term functions
@@ -135,6 +139,7 @@ nnoremap <c-o> :bnext<CR>
 " local leader mappings
 let maplocalleader="\<space>"
 nnoremap <localleader>t :rightb vert terminal<cr>
+" nnoremap <localleader>pw viwp
 
 function WrapCout()
   :exe "norm Istd::cout << "
@@ -255,3 +260,6 @@ function ParseCMakeCacheLine(line)
     :set tags+=$tag_file
   endif
 endfu
+
+" gitlab hooks
+let g:fugitive_gitlab_domains = ['https://atas-gita.gtri.gatech.edu']

@@ -11,6 +11,6 @@ fi
 
 trap 'rm -f "$dir/$$.tags"' EXIT
 git ls-files --recurse-submodules | \
-  ctags --tag-relative -L - -f"$dir/$$.tags" --languages=-javascript,sql \
+  ctags --tag-relative=yes -L - -f"$dir/$$.tags" --languages=-javascript,sql \
   >/dev/null 2>&1
 mv "$dir/$$.tags" "$dir/tags"
