@@ -74,11 +74,6 @@ map <leader>al :ALEToggle<CR>
 "This unsets the 'last search pattern' register by hitting return
 nnoremap <CR> :noh<CR><CR>
 
-" ctrlp
-let g:ctrlp_working_path_mode = 'r'
-nnoremap <localleader>p :CtrlPTag<cr>
-"set runtimepath^=~/.vim/bundle/ctrlp.vim
-"
 " gutentags
 " let g:gutentags_ctags_tagfile = '.git/tags'
 

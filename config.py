@@ -24,8 +24,6 @@ def install_vim():
         os.system("git clone https://github.com/w0rp/ale.git ~/.vim/pack/crich/start/ale")
     if not os.path.exists(user_home + '/.vim/pack/crich/start/commentary'):
         os.system("git clone https://tpope.io/vim/commentary.git $HOME/.vim/pack/crich/start/commentary")
-    if not os.path.exists(user_home + '/.vim/pack/crich/start/ctrlp.vim'):
-        os.system("git clone https://github.com/kien/ctrlp.vim $HOME/.vim/pack/crich/start/ctrlp.vim")
     if not os.path.exists(user_home + '/.vim/pack/crich/start/SyntaxRange'):
         os.system("git clone https://github.com/vim-scripts/SyntaxRange $HOME/.vim/pack/crich/start/SyntaxRange")
 
