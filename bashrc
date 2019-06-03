@@ -1,3 +1,6 @@
+# source ssh bashrc file with basic aliases and functions
+source $HOME/.bashrc_ssh
+
 # platform specific config
 if [[ $OSTYPE == "linux-gnu" ]]; then
   # check if ssh session
@@ -8,13 +11,6 @@ if [[ $OSTYPE == "linux-gnu" ]]; then
   # append to the history file, don't overwrite it
   shopt -s histappend
 
-  # relad config
-  alias rlg='source ~/.bashrc'
-  alias ls='ls --color=auto'
-  alias grep='grep --color=auto'
-
-  # remap caps lock
-  setxkbmap -layout us -option ctrl:nocaps
 elif [[ $OSTYPE == "darwin"* ]]; then
   alias ls='gls --color=auto'
   alias grep='ggrep --color=auto'
@@ -25,7 +21,8 @@ elif [[ $OSTYPE == "darwin"* ]]; then
   }
 fi
 
-# cross platform config
+# external scripts
+source ${HOME}/.docker.bash
 
 # python
 export PYTHONPATH="/usr/local/Cellar/python/3.7.0/bin/python3:$PYTHONPATH"
@@ -37,17 +34,6 @@ eval "$(dircolors "$HOME/.dircolors/dircolors-gruvbox/gruvbox-dark.dircolors")"
 
 # cross platform aliases
 alias tr='trash'
-# alias purge='/bin/rm'
-alias ll='ls -lh'
-alias l='ls -lh'
-alias lll='ls -lh'
-alias la='ls -lsah'
-alias gits='git status'
-alias bd='./build_scripts/build'
-alias cld='cdl'
-alias bdl='./build_scripts/lite_build'
-alias gitb='git branch -vv'
-alias vf='vim $(fzf)'
 
 # ssh
 alias sshvm='ssh -p 2224 chris@127.0.0.1'
@@ -63,6 +49,8 @@ git config --global user.email christopher.richardson@gtri.gatech.edu
 git config --global alias.nicelog 'log --decorate --oneline --graph'
 git config --global alias.biglog 'log --decorate --graph'
 git config --global push.default simple
+git config --global fetch.prune true
+git config --global fetch.prune true
 # git aliases
 git config --global alias.su 'submodule update'
 git config --global alias.sui 'submodule update --init'
@@ -73,25 +61,11 @@ git config --global alias.suri 'submodule update --recursive --init'
 git config --global alias.surm 'submodule update --recursive --remote'
 git config --global alias.surim 'submodule update --recursive --init --remote'
 # ctags
-git config --global init.templatedir '~/.git_template'
-git config --global alias.ctags '!.git/hooks/ctags'
+#git rev-list BRANCH | while read rev; do git grep "REGEX" $rev; done
 
 # Editor
 export VISUAL=vim
 export EDITOR="$VISUAL"
-
-### useful functions
-
-# cd and ls
-function cdl ()
-{
-  if [ $# == 0 ]
-  then
-    cd && ls -lh --color=auto
-  else
-    cd "$1" && ls -lh --color=auto
-  fi
-}
 
 # grep and pipe to less with color
 function greplc ()
@@ -122,13 +96,6 @@ function vimcpp() {
 }
 function vimchanged() {
   vim $(git diff --name-only HEAD^ HEAD)
-}
-
-function cdu() {
-  if [[ "$#" -gt 0 ]] ; then
-    cd $(printf "%0.s../" $(seq 1 $1 ));
-    ls -lh
-  fi
 }
 
 function change_occurrences_of_name() {
@@ -202,4 +169,17 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# ERGMG FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export FZF_DEFAULT_OPTS='--bind=ctrl-u:half-page-up,ctrl-d:half-page-down,ctrl-b:page-up,ctrl-f:page-down'
+
+# copy bashrc over ssh
+# function sshb() {
+#   scp $HOME/.bashrc_ssh $1:/tmp/.bashrc_temp > /dev/null
+#   ssh -t $1 "bash --rcfile /tmp/.bashrc_temp ; rm /tmp/.bashrc_temp"
+# }
+
+function sshs() {
+        ssh $@ "cat > /tmp/.bashrc_temp" < ~/.bashrc_ssh
+        ssh -t $@ "bash --rcfile /tmp/.bashrc_temp ; rm /tmp/.bashrc_temp"
+}

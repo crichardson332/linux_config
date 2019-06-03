@@ -53,11 +53,14 @@ def install_vim():
         os.system("git clone https://github.com/vim-scripts/utl.vim $HOME/.vim/pack/crich/start/utl.vim")
     if not os.path.exists(user_home + '/.vim/pack/crich/start/gruvbox'):
         os.system("git clone https://github.com/morhetz/gruvbox.git $HOME/.vim/pack/crich/start/gruvbox")
+    if not os.path.exists(user_home + '/.vim/pack/crich/start/gutentags'):
+        os.system("git clone https://github.com/ludovicchabant/vim-gutentags.git $HOME/.vim/pack/crich/start/gutentags")
 
     shutil.copy(script_dir + '/vimrc', user_home + '/.vimrc')
 
 def install_bashrc():
     shutil.copy(script_dir + '/prompt.bash', user_home + '/.prompt.bash')
+    shutil.copy(script_dir + '/bashrc_ssh', user_home + '/.bashrc_ssh')
     shutil.copy(script_dir + '/bashrc', user_home + '/.bashrc')
     if platform == "darwin":
         shutil.copy(script_dir + '/bash_profile', user_home + '/.bash_profile')
@@ -90,6 +93,15 @@ def install_kitty():
         pass
     return
 
+def install_fzf():
+    if platform == "linux" or platform == "linux2":
+        if not os.path.exists(user_home + '/.fzf'):
+            os.system("git clone https://github.com/junegunn/fzf.git $HOME/.fzf")
+            os.system("~/.fzf/install --all")
+    elif platform == "darwin":
+            os.system("brew install fzf")
+    return
+
 def main():
     # cant run as root
     env = os.environ.copy()
@@ -118,6 +130,8 @@ def main():
                         help='Install i3 config')
     parser.add_argument('-k','--kitty', action='store_true', default=False,
                         help='Install kitty config')
+    parser.add_argument('-f','--fzf', action='store_true', default=False,
+                        help='Install fzf')
     args = parser.parse_args()
 
     if args.vim or args.all:
@@ -130,6 +144,8 @@ def main():
         install_i3()
     if args.kitty or args.all:
         install_kitty()
+    if args.fzf or args.all:
+        install_fzf()
 
     if not os.path.exists(user_home + '/.dircolors'):
         os.mkdir(user_home + '/.dircolors')

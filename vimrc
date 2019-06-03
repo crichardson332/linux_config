@@ -1,11 +1,10 @@
 let g:solarized_termtrans=1
-let NERDTreeHijackNetrw=1
 filetype on
 filetype plugin indent on
 syntax enable
 :set nocompatible
-:set tabstop=2
-:set shiftwidth=2
+:set tabstop=4
+:set shiftwidth=4
 :set expandtab
 :set hls!
 :set ruler
@@ -19,6 +18,10 @@ autocmd bufread *.launch exe "setf xml"
 ":set nohlsearch
 set background=dark
 " set background=light
+" fzf
+set rtp+=~/.fzf
+" noremap <c-p> :Files<cr>
+noremap <c-t> :Files<cr>
 
 " packloadall
 silent! helptags ALL
@@ -55,16 +58,16 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_section_b = ''
 let g:airline_section_c = ''
 
-" ALE
+" ale
 let g:ale_fixers = {
   \ '*': ['remove_trailing_lines', 'trim_whitespace'],
   \}
 let g:ale_fix_on_save = 1
-let g:ale_linters = {
-  \ 'cpp': ['cppcheck'],
-  \}
-" 'cpp': ['ccls'],
-let g:ale_lint_on_enter = 1
+let g:ale_linters = {'cpp': ['cppcheck', 'cpplint']}
+" let g:ale_lint_on_enter = 1
+" with ccls
+" let g:ale_completion_enabled = 1
+" noremap <c-]> :ALEGoToDefinition<cr>
 
 map <leader>al :ALEToggle<CR>
 
@@ -75,6 +78,9 @@ nnoremap <CR> :noh<CR><CR>
 let g:ctrlp_working_path_mode = 'r'
 nnoremap <localleader>p :CtrlPTag<cr>
 "set runtimepath^=~/.vim/bundle/ctrlp.vim
+"
+" gutentags
+" let g:gutentags_ctags_tagfile = '.git/tags'
 
 " " term functions
 " function InsertOnTerm()
@@ -113,8 +119,11 @@ vnoremap <c-k> 10k
 vnoremap <c-j> 10j
 vnoremap <c-h> <s-h>
 vnoremap <c-l> <s-l>
-inoremap <c-k> <c-c>10ka
-inoremap <c-j> <c-c>10ja
+" inoremap <c-k> <c-c>10ka
+" inoremap <c-j> <c-c>10ja
+" " Move up and down in autocomplete with <c-j> and <c-k>
+inoremap <expr> <c-j> ("\<C-n>")
+inoremap <expr> <c-k> ("\<C-p>")
 inoremap <c-h> <c-c><s-h>i
 inoremap <c-l> <c-c><s-l>i
 " cursor to middle

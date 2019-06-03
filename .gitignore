@@ -3,3 +3,4 @@
 *.user
 *.autosave
 *.pyc
+*tags

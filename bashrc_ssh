@@ -1,0 +1,33 @@
+# remap caps lock
+setxkbmap -layout us -option ctrl:nocaps
+
+# aliases
+alias rlg='source ~/.bashrc'
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias ll='ls -lh'
+alias l='ls -lh'
+alias lll='ls -lh'
+alias la='ls -lsah'
+alias gits='git status'
+alias cld='cdl'
+alias gitb='git branch -vv'
+alias vf='vim $(fzf)'
+
+# cd and ls
+function cdl ()
+{
+  if [ $# == 0 ]
+  then
+    cd && ls -lh --color=auto
+  else
+    cd "$1" && ls -lh --color=auto
+  fi
+}
+
+function cdu() {
+  if [[ "$#" -gt 0 ]] ; then
+    cd $(printf "%0.s../" $(seq 1 $1 ));
+    ls -lh
+  fi
+}
