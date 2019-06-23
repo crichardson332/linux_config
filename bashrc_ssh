@@ -1,10 +1,34 @@
-# remap caps lock
-setxkbmap -layout us -option ctrl:nocaps
+
+if [[ $OSTYPE == "linux-gnu" ]]; then
+    # check if ssh session
+    if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+      export DISPLAY=":0"
+    fi
+    # remap caps lock
+    setxkbmap -layout us -option ctrl:nocaps
+
+    # append to the history file, don't overwrite it
+    shopt -s histappend
+
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    alias rlg='source ~/.bashrc'
+
+    # caps lock nonsense
+    alias CAPSLOCK='xdotool key Caps_Lock'
+
+    # ERGMG FZF
+    git clone https://github/com/junegunn/fzf.git
+    ~/.fzf/install --all
+    export FZF_DEFAULT_OPTS='--bind=ctrl-u:half-page-up,ctrl-d:half-page-down,ctrl-b:page-up,ctrl-f:page-down'
+elif [[ $OSTYPE == "darwin"* ]]; then
+    alias ls='gls --color=auto'
+    alias grep='ggrep --color=auto'
+    alias dircolors='gdircolors'
+    alias rlg='source ~/.bash_profile'
+fi
 
 # aliases
-alias rlg='source ~/.bashrc'
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
 alias ll='ls -lh'
 alias l='ls -lh'
 alias lll='ls -lh'

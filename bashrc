@@ -3,34 +3,30 @@ source $HOME/.bashrc_ssh
 
 # platform specific config
 if [[ $OSTYPE == "linux-gnu" ]]; then
-  # check if ssh session
-  if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-    export DISPLAY=":0"
-  fi
+    # check if ssh session
+    if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+      export DISPLAY=":0"
+    fi
 
-  # append to the history file, don't overwrite it
-  shopt -s histappend
+    # append to the history file, don't overwrite it
+    shopt -s histappend
+
+    # external scripts
+    source ${HOME}/.docker.bash
+
+    # dircolors for colorscheme
+    # eval "$(dircolors "$HOME/.dircolors/dircolors-solarized/dircolors.ansi-dark")"
+    eval "$(dircolors "$HOME/.dircolors/dircolors-gruvbox/gruvbox-dark.dircolors")"
 
 elif [[ $OSTYPE == "darwin"* ]]; then
-  alias ls='gls --color=auto'
-  alias grep='ggrep --color=auto'
-  alias dircolors='gdircolors'
-  alias rlg='source ~/.bash_profile'
-  function focus_follows_mouse() {
-    defaults write com.apple.Terminal FocusFollowsMouse -string YES
-  }
+    function focus_follows_mouse() {
+      defaults write com.apple.Terminal FocusFollowsMouse -string YES
+    }
 fi
-
-# external scripts
-source ${HOME}/.docker.bash
 
 # python
 export PYTHONPATH="/usr/local/Cellar/python/3.7.0/bin/python3:$PYTHONPATH"
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-
-# dircolors for solarized
-# eval "$(dircolors "$HOME/.dircolors/dircolors-solarized/dircolors.ansi-dark")"
-eval "$(dircolors "$HOME/.dircolors/dircolors-gruvbox/gruvbox-dark.dircolors")"
 
 # cross platform aliases
 alias tr='trash'
@@ -40,9 +36,6 @@ alias sshvm='ssh -p 2224 chris@127.0.0.1'
 alias sshvmd='ssh -p 2226 chris@127.0.0.1'
 alias sshlnx='ssh crichardson@192.168.90.207'
 
-# caps lock nonsense
-alias CAPSLOCK='xdotool key Caps_Lock'
-
 # git
 git config --global user.name "Christopher Richardson"
 git config --global user.email christopher.richardson@gtri.gatech.edu
@@ -51,6 +44,7 @@ git config --global alias.biglog 'log --decorate --graph'
 git config --global push.default simple
 git config --global fetch.prune true
 git config --global fetch.prune true
+git config --global core.excludesfile ~/.gitignore
 # git aliases
 git config --global alias.su 'submodule update'
 git config --global alias.sui 'submodule update --init'
@@ -168,10 +162,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-# ERGMG FZF
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export FZF_DEFAULT_OPTS='--bind=ctrl-u:half-page-up,ctrl-d:half-page-down,ctrl-b:page-up,ctrl-f:page-down'
 
 # copy bashrc over ssh
 # function sshb() {

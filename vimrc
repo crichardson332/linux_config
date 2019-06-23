@@ -18,8 +18,25 @@ autocmd bufread *.launch exe "setf xml"
 ":set nohlsearch
 set background=dark
 " set background=light
+"
 " fzf
-set rtp+=~/.fzf
+if has("gui_running")
+  " Gvim
+  if has("gui_gtk2") || has("gui_gtk3")
+    " Linux GUI
+  elseif has("gui_win32")
+    " Win32/64 GVim
+  elseif has("gui_macvim")
+    " MacVim
+    set rtp+=/usr/local/opt/fzf
+  else
+    echo "Unknown GUI system!!!!"
+  endif
+else
+  " Terminal vim
+  set rtp+=~/.fzf
+endif
+
 " noremap <c-p> :Files<cr>
 noremap <c-t> :Files<cr>
 
@@ -50,9 +67,9 @@ colorscheme gruvbox
 
 " vim-airline settings
 " let g:airline_theme = 'solarized'
-let g:airline_theme = 'gruvbox'
-let g:airline_solarized_bg='dark'
+" let g:airline_solarized_bg='dark'
 " let g:airline_solarized_bg='light'
+let g:airline_theme = 'gruvbox'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_section_b = ''
@@ -267,3 +284,39 @@ endfu
 
 " gitlab hooks
 let g:fugitive_gitlab_domains = ['https://atas-gita.gtri.gatech.edu']
+
+" vim-plug
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+" Make sure you use single quotes
+
+" Plugin outside ~/.vim/plugged with post-update hook
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/gv.vim'
+Plug 'junegunn/vim-peekaboo'
+Plug 'junegunn/vim-easy-align'
+" tpope
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
+" others
+Plug 'w0rp/ale'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'inkarkat/vim-SyntaxRange'
+Plug 'jceb/vim-orgmode'
+" vim-scripts is deprecated - need to find replacements
+" Plug 'vim-scripts/utl.vim'
+
+" gruvbox doesnt work
+" Plug 'morhetz/gruvbox'
+
+" Initialize plugin system
+call plug#end()
