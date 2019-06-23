@@ -20,40 +20,20 @@ def install_vim():
     #     os.system("curl -LSso \"$HOME/.vim/autoload/pathogen.vim\" https://tpo.pe/pathogen.vim")
 
     # plugins
-    if not os.path.exists(user_home + '/.vim/pack/crich/start/ale'):
-        os.system("git clone https://github.com/w0rp/ale.git ~/.vim/pack/crich/start/ale")
-    if not os.path.exists(user_home + '/.vim/pack/crich/start/commentary'):
-        os.system("git clone https://tpope.io/vim/commentary.git $HOME/.vim/pack/crich/start/commentary")
-    if not os.path.exists(user_home + '/.vim/pack/crich/opt/SyntaxRange'):
-        os.system("git clone https://github.com/vim-scripts/SyntaxRange $HOME/.vim/pack/crich/opt/SyntaxRange")
-    if not os.path.exists(user_home + '/.vim/pack/crich/start/tabular'):
-        os.system("git clone git://github.com/godlygeek/tabular $HOME/.vim/pack/crich/start/tabular")
-    if not os.path.exists(user_home + '/.vim/pack/crich/start/vim-airline'):
-        os.system("git clone https://github.com/vim-airline/vim-airline ~/.vim/pack/crich/start/vim-airline")
-    if not os.path.exists(user_home + '/.vim/pack/crich/start/vim-airline-themes'):
-        os.system("git clone https://github.com/vim-airline/vim-airline-themes ~/.vim/pack/crich/start/vim-airline-themes")
-    if not os.path.exists(user_home + '/.vim/pack/crich/start/vim-colors-solarized'):
-        os.system("git clone git://github.com/altercation/vim-colors-solarized.git $HOME/.vim/pack/crich/start/vim-colors-solarized")
-    if not os.path.exists(user_home + '/.vim/pack/crich/start/vim-fugitive'):
-        os.system("git clone https://github.com/tpope/vim-fugitive $HOME/.vim/pack/crich/start/vim-fugitive")
     if not os.path.exists(user_home + '/.vim/pack/crich/opt/vim-orgmode'):
         os.system("git clone https://github.com/jceb/vim-orgmode $HOME/.vim/pack/crich/opt/vim-orgmode")
     if not os.path.exists(user_home + '/.vim/pack/crich/opt/vim-repeat'):
         os.system("git clone https://github.com/tpope/vim-repeat $HOME/.vim/pack/crich/opt/vim-repeat")
     if not os.path.exists(user_home + '/.vim/pack/crich/opt/vim-speeddating'):
         os.system("git clone https://github.com/tpope/vim-speeddating $HOME/.vim/pack/crich/opt/vim-speeddating")
-    if not os.path.exists(user_home + '/.vim/pack/crich/start/vim-surround'):
-        os.system("git clone https://github.com/tpope/vim-surround $HOME/.vim/pack/crich/start/vim-surround")
-    if not os.path.exists(user_home + '/.vim/pack/crich/start/vim-vinegar'):
-        os.system("git clone https://github.com/tpope/vim-vinegar $HOME/.vim/pack/crich/start/vim-vinegar")
     if not os.path.exists(user_home + '/.vim/pack/crich/opt/utl.vim'):
         os.system("git clone https://github.com/vim-scripts/utl.vim $HOME/.vim/pack/crich/opt/utl.vim")
     if not os.path.exists(user_home + '/.vim/pack/crich/start/gruvbox'):
         os.system("git clone https://github.com/morhetz/gruvbox.git $HOME/.vim/pack/crich/start/gruvbox")
-    if not os.path.exists(user_home + '/.vim/pack/crich/start/gutentags'):
-        os.system("git clone https://github.com/ludovicchabant/vim-gutentags.git $HOME/.vim/pack/crich/start/gutentags")
 
     shutil.copy(script_dir + '/vimrc', user_home + '/.vimrc')
+    os.system("vim +PlugInstall +qall")
+
 
 def install_bashrc():
     shutil.copy(script_dir + '/prompt.bash', user_home + '/.prompt.bash')
