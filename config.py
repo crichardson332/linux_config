@@ -12,22 +12,7 @@ user_home = ''
 script_dir = os.path.dirname(os.path.realpath(__file__))
 
 def install_vim():
-    if not os.path.exists(user_home + '/.vim/pack/crich/start'):
-        os.makedirs(user_home + '/.vim/pack/crich/start')
-
-    # # pathogen
-    # if not os.path.exists(user_home + '/.vim/autoload/pathogen.vim'):
-    #     os.system("curl -LSso \"$HOME/.vim/autoload/pathogen.vim\" https://tpo.pe/pathogen.vim")
-
-    # plugins
-    if not os.path.exists(user_home + '/.vim/pack/crich/opt/vim-orgmode'):
-        os.system("git clone https://github.com/jceb/vim-orgmode $HOME/.vim/pack/crich/opt/vim-orgmode")
-    if not os.path.exists(user_home + '/.vim/pack/crich/opt/vim-repeat'):
-        os.system("git clone https://github.com/tpope/vim-repeat $HOME/.vim/pack/crich/opt/vim-repeat")
-    if not os.path.exists(user_home + '/.vim/pack/crich/opt/vim-speeddating'):
-        os.system("git clone https://github.com/tpope/vim-speeddating $HOME/.vim/pack/crich/opt/vim-speeddating")
-    if not os.path.exists(user_home + '/.vim/pack/crich/opt/utl.vim'):
-        os.system("git clone https://github.com/vim-scripts/utl.vim $HOME/.vim/pack/crich/opt/utl.vim")
+    # TODO fix vim-plug's gruvbox install
     if not os.path.exists(user_home + '/.vim/pack/crich/start/gruvbox'):
         os.system("git clone https://github.com/morhetz/gruvbox.git $HOME/.vim/pack/crich/start/gruvbox")
 

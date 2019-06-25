@@ -44,16 +44,6 @@ elif [[ "$OSTYPE" == "linux-gnu" ]] ; then
   fi
 fi
 
-# vim pathogen
-if [ ! -f "$HOME/.vim/autoload/pathogen.vim" ]; then
-  mkdir -p "$HOME/.vim/autoload ~/.vim/bundle"
-  curl -LSso "$HOME/.vim/autoload/pathogen.vim" https://tpo.pe/pathogen.vim
-fi
-
-# ctags vim
-mkdir -p "$HOME/.git_template/hooks"
-cp ./hooks/* "$HOME/.git_template/hooks"
-
 # create config folders
 mkdir -p "$HOME/.vim"
 mkdir -p "$HOME/.dircolors"
