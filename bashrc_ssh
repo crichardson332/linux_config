@@ -18,8 +18,11 @@ if [[ $OSTYPE == "linux-gnu" ]]; then
     alias CAPSLOCK='xdotool key Caps_Lock'
 
     # ERGMG FZF
-    git clone https://github/com/junegunn/fzf.git
-    ~/.fzf/install --all
+    FZFDIR=${HOME}/.fzf
+    if [ ! -d "${FZFDIR}" ]; then
+        git clone https://github/com/junegunn/fzf.git
+        ~/.fzf/install --all
+    fi
     export FZF_DEFAULT_OPTS='--bind=ctrl-u:half-page-up,ctrl-d:half-page-down,ctrl-b:page-up,ctrl-f:page-down'
 elif [[ $OSTYPE == "darwin"* ]]; then
     alias ls='gls --color=auto'

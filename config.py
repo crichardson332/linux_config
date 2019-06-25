@@ -56,17 +56,9 @@ def install_terminator():
 
 def install_i3():
     if platform == "linux" or platform == "linux2":
-        shutil.copy(script_dir + '/config/i3', user_home + '/.config/i3')
+        shutil.copy(script_dir + '/config/i3/config', user_home + '/.config/i3/config')
     elif platform == "darwin":
         print("macOS detected: not installing i3.")
-        pass
-    return
-
-def install_kitty():
-    if platform == "linux" or platform == "linux2":
-        shutil.copy(script_dir + '/config/kitty', user_home + '/.config/kitty')
-    elif platform == "darwin":
-        print("macOS detected: not installing kitty.")
         pass
     return
 
@@ -105,8 +97,6 @@ def main():
                         help='Install terminator config')
     parser.add_argument('-i','--i3', action='store_true', default=False,
                         help='Install i3 config')
-    parser.add_argument('-k','--kitty', action='store_true', default=False,
-                        help='Install kitty config')
     parser.add_argument('-f','--fzf', action='store_true', default=False,
                         help='Install fzf')
     args = parser.parse_args()
@@ -119,8 +109,6 @@ def main():
         install_terminator()
     if args.i3 or args.all:
         install_i3()
-    if args.kitty or args.all:
-        install_kitty()
     if args.fzf or args.all:
         install_fzf()
 
