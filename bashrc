@@ -173,3 +173,5 @@ function sshs() {
         ssh $@ "cat > /tmp/.bashrc_temp" < ~/.bashrc_ssh
         ssh -t $@ "bash --rcfile /tmp/.bashrc_temp ; rm /tmp/.bashrc_temp"
 }
+
+# [ -f ~/.fzf.bash ] && source ~/.fzf.bash

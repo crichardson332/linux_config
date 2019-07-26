@@ -101,4 +101,5 @@ build_prompt() {
 GITSTRING=""
 
 # new method
-PROMPT_COMMAND=build_prompt
+PROMPT_COMMAND="pwd > /tmp/whereami"
+PROMPT_COMMAND="build_prompt;$PROMPT_COMMAND"
