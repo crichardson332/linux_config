@@ -31,7 +31,7 @@ def install_terminator():
     if platform == "linux" or platform == "linux2":
         if not os.path.exists(user_home + '/.config/terminator'):
             os.makedirs(user_home + '/.config/terminator')
-        shutil.copy(script_dir + '/terminator_config', user_home + '/.config/terminator/config')
+        shutil.copy(script_dir + '/config/terminator', user_home + '/.config/terminator')
     elif platform == "darwin":
         pass
         #print("macOS detected: not installing terminator.")

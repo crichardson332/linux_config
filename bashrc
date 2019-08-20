@@ -28,8 +28,12 @@ fi
 export PYTHONPATH="/usr/local/Cellar/python/3.7.0/bin/python3:$PYTHONPATH"
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
+# go
+export PATH=$PATH:$HOME/go/bin
+
 # cross platform aliases
 alias tr='trash'
+alias rng='ranger'
 
 # ssh
 alias sshvm='ssh -p 2224 chris@127.0.0.1'
@@ -123,10 +127,10 @@ function cmake_find_package() {
 # shellcheck source=/dev/null
 source ~/.prompt.bash
 
-if [ -f ~/.scrimmage/setup.bash ]; then
-  # shellcheck source=/dev/null
-  source ~/.scrimmage/setup.bash
-fi
+# if [ -f ~/.scrimmage/setup.bash ]; then
+#   # shellcheck source=/dev/null
+#   source ~/.scrimmage/setup.bash
+# fi
 
 if [ -f /opt/ros/kinetic/setup.bash ]; then
   # shellcheck source=/dev/null
@@ -174,4 +178,4 @@ function sshs() {
         ssh -t $@ "bash --rcfile /tmp/.bashrc_temp ; rm /tmp/.bashrc_temp"
 }
 
-# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
