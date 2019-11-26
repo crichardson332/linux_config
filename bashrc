@@ -32,7 +32,6 @@ export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=$PATH:$HOME/go/bin
 
 # cross platform aliases
-alias tr='trash'
 alias rng='ranger'
 
 # ssh

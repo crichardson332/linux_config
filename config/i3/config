@@ -24,6 +24,9 @@ set $mod Mod1
 
 # custom settings
 exec --no-startup-id xrandr --output DP-3 --auto --left-of DP-1
+bindsym $mod+Shift+h move workspace to output left
+bindsym $mod+Shift+l move workspace to output left
+
 
 # MODES
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
@@ -110,10 +113,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+# bindsym $mod+Shift+j move left
+# bindsym $mod+Shift+k move down
+# bindsym $mod+Shift+l move up
+# bindsym $mod+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left

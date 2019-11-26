@@ -5,7 +5,7 @@ if [[ $OSTYPE == "linux-gnu" ]]; then
       export DISPLAY=":0"
     fi
     # remap caps lock
-    # setxkbmap -layout us -option ctrl:nocaps
+    setxkbmap -layout us -option ctrl:nocaps
 
     # append to the history file, don't overwrite it
     shopt -s histappend
