@@ -35,7 +35,7 @@ elif [[ "$OSTYPE" == "linux-gnu" ]] ; then
     # fi
     sudo add-apt-repository ppa:jonathonf/vim
     # sudo apt-get update xkbset
-    sudo apt-get install build-essential libgtest-dev curl htop terminator git cmake ninja-build python python3 python3-pip vim safe-rm openssh-server tmux vim trash-cli tree ctags i3 numlockx scrot nitrogen xkbset xdotool
+    sudo apt-get install build-essential libgtest-dev curl htop terminator git cmake ninja-build python python3 python3-pip vim safe-rm openssh-server tmux vim trash-cli tree ctags i3 numlockx scrot nitrogen xkbset xdotool xbacklight
 
   # OpenSuse, Mandriva, Fedora, CentOs, ecc. (with rpm)
   elif command -v rpm &> /dev/null; then
