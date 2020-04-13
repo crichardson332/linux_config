@@ -31,7 +31,7 @@ def install_terminator():
     if platform == "linux" or platform == "linux2":
         if not os.path.exists(user_home + '/.config/terminator'):
             os.makedirs(user_home + '/.config/terminator')
-        shutil.copy(script_dir + '/config/terminator', user_home + '/.config/terminator')
+        shutil.copy(script_dir + '/config/terminator/config', user_home + '/.config/terminator')
     elif platform == "darwin":
         pass
         #print("macOS detected: not installing terminator.")
@@ -42,6 +42,9 @@ def install_terminator():
 def install_i3():
     if platform == "linux" or platform == "linux2":
         shutil.copy(script_dir + '/config/i3/config', user_home + '/.config/i3/config')
+        if not os.path.exists(user_home + '/.i3'):
+            os.makedirs(user_home + '/.i3')
+        shutil.copy(script_dir + '/config/i3/i3_shell.sh', user_home + '/.i3/i3_shell.sh')
     elif platform == "darwin":
         print("macOS detected: not installing i3.")
         pass
