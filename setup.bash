@@ -17,9 +17,13 @@ if [[ "$OSTYPE" == "darwin"* ]] ; then
 elif [[ "$OSTYPE" == "linux-gnu" ]] ; then
   # remap caps lock to ctrl
   # /usr/bin/setxkbmap -option caps:ctrl_modifier
+  xset r rate 250 60
 
   # terminator
   touch "$HOME/.config/terminator/config"
+
+  # vim-plug
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
   # Debian
   if command -v apt-get &> /dev/null; then
@@ -31,7 +35,7 @@ elif [[ "$OSTYPE" == "linux-gnu" ]] ; then
     # fi
     sudo add-apt-repository ppa:jonathonf/vim
     # sudo apt-get update xkbset
-    sudo apt-get install build-essential libgtest-dev curl htop terminator git cmake ninja python python3 python3-pip vim safe-rm openssh-server tmux vim trash-cli tree ctags i3 numlockx scrot nitrogen xkbset xdotool
+    sudo apt-get install build-essential libgtest-dev curl htop terminator git cmake ninja-build python python3 python3-pip vim safe-rm openssh-server tmux vim trash-cli tree ctags i3 numlockx scrot nitrogen xkbset xdotool
 
   # OpenSuse, Mandriva, Fedora, CentOs, ecc. (with rpm)
   elif command -v rpm &> /dev/null; then

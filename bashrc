@@ -12,7 +12,7 @@ if [[ $OSTYPE == "linux-gnu" ]]; then
     shopt -s histappend
 
     # external scripts
-    source ${HOME}/.docker.bash
+    #source ${HOME}/.docker.bash
 
     # dircolors for colorscheme
     # eval "$(dircolors "$HOME/.dircolors/dircolors-solarized/dircolors.ansi-dark")"
