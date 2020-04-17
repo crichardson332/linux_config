@@ -26,7 +26,6 @@ set $mod Mod1
 exec --no-startup-id xrandr --output DP-3 --auto --left-of DP-1
 bindsym $mod+Shift+h move workspace to output left
 bindsym $mod+Shift+l move workspace to output left
-bindsym $mod+Return exec "terminator --working-directory=`xcwd`"
 
 
 # MODES
@@ -63,9 +62,13 @@ bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
 
 # sound
-bindsym XF86AudioRaiseVolume exec i3_volume -i 3
-bindsym XF86AudioLowerVolume exec i3_volume -d 3
-bindsym XF86AudioMute exec i3_volume -m
+# bindsym XF86AudioRaiseVolume exec i3_volume -i 3
+# bindsym XF86AudioLowerVolume exec i3_volume -d 3
+# bindsym XF86AudioMute exec i3_volume -m
+bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+ unmute"
+bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 1- unmute"
+bindsym XF86AudioMute exec "pactl set-sink-mute 0 toggle"
+# bindsym XF86AudioMute exec amixer -q set Master toggle
 
 # screenshot
 bindsym --release Print exec gnome-screenshot
@@ -89,6 +92,9 @@ font pango:monospace 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec 'terminator'
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -215,3 +221,9 @@ bar {
         tray_output primary
         font pango:DejaVu Snad Mono 10
 }
+
+# volume master {
+#         format = "♪: %volume"
+#         format_muted = "♪: muted (%volume)"
+#         device = "pulse:1"
+# }

@@ -39,6 +39,10 @@ alias sshvm='ssh -p 2224 chris@127.0.0.1'
 alias sshvmd='ssh -p 2226 chris@127.0.0.1'
 alias sshlnx='ssh crichardson@192.168.90.207'
 
+# convenience
+alias py3='python3'
+alias p='python3'
+
 # git
 git config --global user.name "Christopher Richardson"
 git config --global user.email christopher.richardson@gtri.gatech.edu
@@ -111,6 +115,9 @@ Usage:
   fi
 }
 
+################
+### builtins ###
+################
 function purge_scrimmage_paths() {
   export SCRIMMAGE_DATA_PATH=""
   export SCRIMMAGE_CONFIG_PATH=""
@@ -118,10 +125,28 @@ function purge_scrimmage_paths() {
   export SCRIMMAGE_MISSION_PATH=""
 }
 
+function sshs() {
+        ssh $@ "cat > /tmp/.bashrc_temp" < ~/.bashrc_ssh
+        ssh -t $@ "bash --rcfile /tmp/.bashrc_temp ; rm /tmp/.bashrc_temp"
+}
+
+function cd
+{
+    builtin cd "$@"
+    pwd > ~/.lastdir
+}
+
+if [ -f ~/.lastdir ]; then
+    cd "$(cat ~/.lastdir)"
+fi
+
 # cmake
 function cmake_find_package() {
   cmake --find-package -DNAME="$1" -DCOMPILER_ID=GNU -DMODE=EXIST -DLANGUAGE=CXX
 }
+
+# add .local to path
+PATH=$PATH:~/.local/bin
 
 # shellcheck source=/dev/null
 source ~/.prompt.bash
@@ -171,10 +196,5 @@ fi
 #   scp $HOME/.bashrc_ssh $1:/tmp/.bashrc_temp > /dev/null
 #   ssh -t $1 "bash --rcfile /tmp/.bashrc_temp ; rm /tmp/.bashrc_temp"
 # }
-
-function sshs() {
-        ssh $@ "cat > /tmp/.bashrc_temp" < ~/.bashrc_ssh
-        ssh -t $@ "bash --rcfile /tmp/.bashrc_temp ; rm /tmp/.bashrc_temp"
-}
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
