@@ -44,9 +44,6 @@ def install_i3():
         if not os.path.exists(user_home + '/.config/i3'):
             os.makedirs(user_home + '/.config/i3')
         shutil.copy(script_dir + '/config/i3/config', user_home + '/.config/i3/config')
-        if not os.path.exists(user_home + '/.i3'):
-            os.makedirs(user_home + '/.i3')
-        shutil.copy(script_dir + '/config/i3/i3_shell.sh', user_home + '/.i3/i3_shell.sh')
     elif platform == "darwin":
         print("macOS detected: not installing i3.")
         pass
