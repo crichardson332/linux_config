@@ -151,10 +151,10 @@ PATH=$PATH:~/.local/bin
 # shellcheck source=/dev/null
 source ~/.prompt.bash
 
-# if [ -f ~/.scrimmage/setup.bash ]; then
-#   # shellcheck source=/dev/null
-#   source ~/.scrimmage/setup.bash
-# fi
+if [ -f ~/.scrimmage/setup.bash ]; then
+  # shellcheck source=/dev/null
+  source ~/.scrimmage/setup.bash
+fi
 
 if [ -f /opt/ros/kinetic/setup.bash ]; then
   # shellcheck source=/dev/null
