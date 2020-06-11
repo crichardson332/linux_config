@@ -1,0 +1,7 @@
+Host uav53
+    HostName 10.160.53.21
+    User uav
+
+Host uav54
+    HostName 10.160.54.21
+    User uav
