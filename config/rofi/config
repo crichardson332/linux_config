@@ -1,0 +1,16 @@
+rofi.theme: ~/.config/rofi/themes/gruvbox/gruvbox-dark.rasi
+
+rofi.kb-row-up:                      Up,Control+k,Shift+Tab,Shift+ISO_Left_Tab
+rofi.kb-row-down:                    Down,Control+j
+rofi.kb-accept-entry:                Control+m,Return,KP_Enter
+rofi.terminal:                       mate-terminal
+rofi.kb-remove-to-eol:               Control+Shift+e
+rofi.kb-mode-next:                   Shift+Right,Control+Tab,Control+o
+rofi.kb-mode-previous:               Shift+Left,Control+Shift+Tab,Control+i
+rofi.kb-remove-char-back:            BackSpace
+rofi.kb-remove-char-forward:         Delete
+rofi.kb-remove-to-eol:               Control+Shift+k
+rofi.kb-remove-to-sol:               Control+Shift+u
+rofi.kb-page-prev:                   Control+u
+rofi.kb-page-next:                   Control+d
+rofi.kb-cancel:                      Escape,Control+c,Alt+space

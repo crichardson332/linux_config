@@ -1,22 +1,21 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-lock() {
-    i3_lock_blur
-}
+# lock() {
+#     $HOME/.local/bin/i3_lock
+# }
 
 case "$1" in
     lock)
-        lock
+        i3_lock
         ;;
     logout)
         i3-msg exit
         ;;
     suspend)
-        # lock && systemctl suspend
         systemctl suspend
         ;;
     hibernate)
-        lock && systemctl hibernate
+        systemctl hibernate
         ;;
     reboot)
         systemctl reboot
@@ -25,7 +24,7 @@ case "$1" in
         systemctl poweroff
         ;;
     *)
-        echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
+        echo "Usage: $0 [lock|logout|suspend|hibernate|reboot|shutdown]"
         exit 2
 esac
 

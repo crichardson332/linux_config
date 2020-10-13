@@ -3,8 +3,8 @@ filetype on
 filetype plugin indent on
 syntax enable
 :set nocompatible
-:set tabstop=4
-:set shiftwidth=4
+:set tabstop=2
+:set shiftwidth=2
 :set expandtab
 :set hls!
 :set ruler
@@ -48,6 +48,11 @@ au BufRead,BufNewFile *.org set filetype=org
 " autocmd FileType org packadd vim-speeddating
 " autocmd FileType org packadd vim-orgmode
 " autocmd FileType org edit!
+
+augroup scxml_ft
+  au!
+  autocmd BufNewFile,BufRead *.scxml   set syntax=xml
+augroup END
 
 autocmd BufReadPre,BufNewFile *.org packadd vim-repeat
 autocmd BufReadPre,BufNewFile *.org packadd calendar.vim
@@ -182,6 +187,35 @@ endfunction
 " autocmd BufWritePre *.* :call s:SaveCurSess()
 autocmd BufWritePre *.* :call s:SaveCurSess()
 
+""" jump to header
+" Jump to a file whose extension corresponds to the extension of the current
+" file. The `tags' file, created with:
+" $ ctags --extra=+f -R .
+" has to be present in the current directory.
+function! JumpToCorrespondingFile()
+    " let l:extensions = { 'c': 'h', 'h': 'c', 'cpp': 'hpp', 'hpp': 'cpp' }
+    let l:extensions = { 'cpp': 'h', 'h': 'cpp' }
+    let l:fe = expand('%:e')
+    if has_key(l:extensions, l:fe)
+        execute ':tag ' . expand('%:t:r') . '.' . l:extensions[l:fe]
+    else
+        call PrintError(">>> Corresponding extension for '" . l:fe . "' is not specified")
+    endif
+endfunct
+
+" jump to a file with the corresponding extension (<C-F2> aka <S-F14>)
+nnoremap <c-p> :call JumpToCorrespondingFile()<CR>
+inoremap <c-p> <C-o>:call JumpToCorrespondingFile()<CR>
+
+" Print error message.
+function! PrintError(msg) abort
+    execute 'normal! \<Esc>'
+    echohl ErrorMsg
+    echomsg a:msg
+    echohl None
+endfunction
+""" end jump to header
+
 """"""""""""""""""""""""""""""""""""""""
 " fix issue with window scrolling during buffer switch
 """"""""""""""""""""""""""""""""""""""""
@@ -299,9 +333,11 @@ Plug 'junegunn/gv.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/vim-easy-align'
 " tpope
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
@@ -312,6 +348,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'inkarkat/vim-SyntaxRange'
 Plug 'jceb/vim-orgmode'
+Plug 'ekalinin/dockerfile.vim'
 " vim-scripts is deprecated - need to find replacements
 " Plug 'vim-scripts/utl.vim'
 

@@ -1,0 +1,22 @@
+[user]
+	name = Christopher Richardson
+	email = christopher.richardson@gtri.gatech.edu
+[alias]
+	nicelog = log --decorate --oneline --graph
+	biglog = log --decorate --graph
+	su = submodule update
+	sui = submodule update --init
+	sum = submodule update --remote
+	suim = submodule update --init --remote
+	sur = submodule update --recursive
+	suri = submodule update --recursive --init
+	surm = submodule update --recursive --remote
+	surim = submodule update --recursive --init --remote
+[push]
+	default = simple
+[fetch]
+	prune = true
+[core]
+	excludesfile = /home/crichardson8/.gitignore
+[diff]
+  tool = vimdiff

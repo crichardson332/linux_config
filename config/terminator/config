@@ -1,47 +1,50 @@
 [global_config]
-  title_transmit_bg_color = "#d30102"
-  suppress_multiple_term_dialog = True
   always_split_with_profile = True
-  #window_state = maximise
+  suppress_multiple_term_dialog = True
+  title_transmit_fg_color = "#fbf1c7"
+  title_transmit_bg_color = "#d65d0e"
+  title_inactive_fg_color = "#3c3836"
+  title_inactive_bg_color = "#a89984"
+  title_receive_fg_color = "#fbf1c7"
+  title_receive_bg_color = "#8ec07c"
 [keybindings]
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      #profile = solarized-light
+      #profile = solarized-dark
+      profile = gruvbox-dark
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
 [profiles]
-  [[solarized-dark]]
-    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#586e75:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
-    foreground_color = "#eee8d5"
-    background_color = "#002b36"
-    cursor_color = "#eee8d5"
-    font = DejaVu Sans Mono 11
-    use_system_font = False
-
-  [[solarized-light]]
-    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
-    background_color = "#eee8d5"
-    foreground_color = "#002b36"
-    cursor_color = "#002b36"
-    font = DejaVu Sans Mono 11
-    use_system_font = False
-
+  [[default]]
+    cursor_color = "#aaaaaa"
   [[gruvbox-dark]]
     background_color = "#282828"
     cursor_color = "#7c6f64"
     foreground_color = "#ebdbb2"
     palette = "#181818:#cc241d:#98971a:#d79921:#458588:#b16286:#689d6a:#ebdbb2:#928374:#fb4934:#b8bb26:#fabd2f:#83a598:#d3869b:#8ec07c:#ebdbb2"
-
+    scrollback_infinite = True
   [[gruvbox-light]]
-    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
     background_color = "#eee8d5"
-    foreground_color = "#002b36"
     cursor_color = "#002b36"
-
-[layouts]
-  [[default]]
-    [[[child1]]]
-      type = Terminal
-      parent = window0
-      #profile = solarized-light
-      #profile = solarized-dark
-      profile = gruvbox-dark
-    [[[window0]]]
-      type = Window
-      parent = ""
-[plugins]
+    foreground_color = "#002b36"
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
+  [[solarized-dark]]
+    background_color = "#002b36"
+    cursor_color = "#eee8d5"
+    font = DejaVu Sans Mono 11
+    foreground_color = "#eee8d5"
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#586e75:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
+    use_system_font = False
+  [[solarized-light]]
+    background_color = "#eee8d5"
+    cursor_color = "#002b36"
+    font = DejaVu Sans Mono 11
+    foreground_color = "#002b36"
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
+    use_system_font = False
